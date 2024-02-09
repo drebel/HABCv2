@@ -2,6 +2,7 @@
 
 import Questionnaire from './components/Questionnaire'
 import Results from './components/Results'
+import Login from './components/Login'
 
 import './App.css'
 
@@ -11,6 +12,7 @@ function App() {
 
   return (
     <>
+      <Login />
       <Questionnaire />
       <Results />
       {/* {isAuthenticated ? (
