@@ -1,8 +1,5 @@
 import React from 'react'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-import { auth }  from '../../config/firestore'
-
-
 
 export default function Login(){
     
@@ -23,24 +20,17 @@ export default function Login(){
 
     function handleLogin(e){
         e.preventDefault()
-        console.log(formData)
         const auth = getAuth();
         signInWithEmailAndPassword(auth, formData.email, formData.password)
         .then((userCredential) => {
             // Signed in 
             const user = userCredential.user;
-            console.log(user)
+            console.log('user has signed in',user)
             // ...
         })
         .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
             console.error(error)
         });
-    }
-
-    function handleLogout(){
-        
     }
 
     return(
@@ -53,7 +43,6 @@ export default function Login(){
                 <br />
                 <button>Login</button>
             </form>
-            <button onClick={handleLogout}>Logout</button>
         </>
     )
 }
