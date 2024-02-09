@@ -5,6 +5,7 @@ import Questionnaire from './components/Questionnaire'
 import Results from './components/Results'
 import Login from './components/Login'
 import Logout from './components/Logout'
+import Signup from './components/Signup'
 
 import './App.css'
 
@@ -24,6 +25,7 @@ function App() {
       {userAuth ? <h1>{userAuth.email}</h1> : <h1>Logged out</h1>}
       <Login />
       <Logout />
+      <Signup />
       <Questionnaire />
       <Results />
     </>
