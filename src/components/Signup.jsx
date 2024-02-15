@@ -32,18 +32,16 @@ export default function Signup(){
             const user = userCredential.user;
             // ...
             console.log('user signed up!')
+            console.log(user)
           })
           .catch((error) => {
-            const errorCode = error.code;
-            const errorMessage = error.message;
-            // ..
             console.error(error)
           });
     }
 
     return(
         <>
-            <h2>Login</h2>
+            <h2>Signup</h2>
             <form onChange={handleChange} onSubmit={handleLogin}>
                 <input name='email' placeholder='Email' type="text" />
                 <br />
