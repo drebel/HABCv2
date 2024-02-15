@@ -18,7 +18,7 @@ function App() {
       setUserAuth(userAuth)
     })
     return () => unsubscribe()
-  },[])
+  },[auth])
 
   return (
     <>
