@@ -1,6 +1,7 @@
 import React from 'react'
 import {db} from '../../config/firestore'
-import { collection, addDoc} from 'firebase/firestore'
+import { collection, addDoc, serverTimestamp} from 'firebase/firestore'
+import { getAuth } from 'firebase/auth'
 
 export default function Questionnaire(){
 
@@ -20,8 +21,17 @@ export default function Questionnaire(){
     }
 
     async function addResult(formData){
-        // Add a new document in collection "cities"
-        await addDoc(collection(db, "test-database"), formData);
+        const auth = getAuth()
+        const user = auth.currentUser
+        
+        const currentTime = serverTimestamp()
+
+        const newDocValues = {
+            ...formData,
+            createdBy: user.uid,
+            createdAt: currentTime 
+        }
+        await addDoc(collection(db, "test-database"), newDocValues);
     }
 
     function handleSubmit(e){
