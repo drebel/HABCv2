@@ -10,6 +10,15 @@ export default function Questionnaire(){
         q2:null,
     })
 
+    const [calculatedMetrics, setCalculatedMetrics] = React.useState({
+        totalScore: null
+    })
+
+    React.useEffect(() => {
+        calculateMetrics()
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [formData])
+
     function handleChange(e){
         const {name, value} = e.target
         setFormData(prevFormData => {
@@ -20,25 +29,38 @@ export default function Questionnaire(){
         })
     }
 
-    async function addResult(formData){
+    function calculateMetrics(){
+        let sum = 0
+        for( let key in formData){
+            sum += formData[key]
+        }
+        setCalculatedMetrics( prevCalculatedMetrics => {
+            return {
+                ...prevCalculatedMetrics,
+                totalScore: sum
+            }
+        })
+    }
+
+    async function addResult(){
         const auth = getAuth()
         const user = auth.currentUser
         
         const currentTime = serverTimestamp()
 
         const newDocValues = {
-            ...formData,
             createdBy: user.uid,
-            createdAt: currentTime 
+            createdAt: currentTime,
+            ...formData,
+            ...calculatedMetrics,
         }
         await addDoc(collection(db, "test-database"), newDocValues);
     }
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(formData)
         try{
-            addResult(formData)
+            addResult()
             console.log('added doc to firestore')
         }catch(error){
             console.error(error)
