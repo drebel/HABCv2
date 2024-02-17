@@ -1,8 +1,7 @@
 import { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 
-import Questionnaire from './components/Questionnaire'
-import Results from './components/Results'
+import HabcContainer from './components/HabcContainer';
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Signup from './components/Signup'
@@ -23,11 +22,10 @@ function App() {
   return (
     <>
       {userAuth ? <h1>{userAuth.email}</h1> : <h1>Logged out</h1>}
+      <HabcContainer />
       <Login />
       <Logout />
       <Signup />
-      <Questionnaire />
-      <Results />
     </>
   )
 }
