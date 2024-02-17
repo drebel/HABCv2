@@ -54,7 +54,7 @@ export default function Questionnaire(){
             ...formData,
             ...calculatedMetrics,
         }
-        await addDoc(collection(db, "test-database"), newDocValues);
+        await addDoc(collection(db, "HABC-responses"), newDocValues);
     }
 
     function handleSubmit(e){

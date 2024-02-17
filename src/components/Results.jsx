@@ -1,6 +1,6 @@
 import React from 'react'
 import {db} from '../../config/firestore'
-import {collection, getDocs, where} from 'firebase/firestore'
+import {collection, getDocs, where, query} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 
 export default function Results(){
@@ -8,10 +8,11 @@ export default function Results(){
     async function getResults(){
         const auth = getAuth()
         const user = auth.currentUser
-        // console.log(user)
+        console.log(user.uid)
 
         const userDocs = []
-        const querySnapshot = await getDocs(collection(db, 'test-database'), where('createdBy', '==', `${user.uid}`))
+        const q = query(collection(db, 'HABC-responses'), where('createdBy', '==', `${user.uid}`))
+        const querySnapshot = await getDocs(q)
         querySnapshot.forEach( doc => {
             userDocs.push(doc.data())
         })
