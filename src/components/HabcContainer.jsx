@@ -73,8 +73,12 @@ export default function HabcContainer(){
 
     return(
         <>
-            <Questionnaire formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-            <Results />
+            <Questionnaire 
+                formData={formData} 
+                handleChange={handleChange} 
+                handleSubmit={handleSubmit} 
+            />
+            <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
         </>
     )
 }

@@ -3,7 +3,7 @@ import {db} from '../../config/firestore'
 import {collection, getDocs, where, query} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 
-export default function Results(){
+export default function Results(props){
 
     // async function getResults(){
     //     const auth = getAuth()
@@ -27,6 +27,8 @@ export default function Results(){
 
     return(
         <>
+            <h2>Total Score: {props.calculatedMetrics.totalScore}</h2>
+
             {/* <button onClick={getResults}>console log saved docs by user</button> */}
         </>
     )
