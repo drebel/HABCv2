@@ -8,10 +8,7 @@ import Results from './Results'
 
 export default function HabcContainer(){
 
-    const [formData, setFormData] = React.useState({
-        q1:null,
-        q2:null,
-    })
+    const [formData, setFormData] = React.useState({})
 
     const [calculatedMetrics, setCalculatedMetrics] = React.useState({
         totalScore: null
@@ -58,6 +55,7 @@ export default function HabcContainer(){
             ...calculatedMetrics,
         }
         await addDoc(collection(db, "HABC-responses"), newDocValues);
+        console.log(newDocValues)
     }
 
     function handleSubmit(e){
