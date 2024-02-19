@@ -3,14 +3,32 @@ import {db} from '../../config/firestore'
 import { collection, addDoc, serverTimestamp} from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
+import questions from '../assets/questions'
+import Question from './Question'
+
 export default function Questionnaire(props){   
+
+    const questionElements = questions.map((q, qIndex) => (
+        // eslint-disable-next-line react/jsx-key
+        <Question 
+            questionKey={qIndex}
+            name={`q${qIndex+1}`}
+            question={q.question}
+            formData={props.formData}
+            handleChange={props.handleChange}
+        />
+    ))
 
     return(
         <>
-            <h2>Fill out and submit this form please</h2>
+            <h2>Please mark each item based on your first reaction <br/>Evidence of actual change is NOT as important as your gut instinct</h2>
+            <h3>There are no formal definitions for the symptoms you are being asked to rate, although, in some cases, examples of the symptom are included. <br />In general, whatever the term means to you is a reasonable and acceptable definition.</h3>
+            <h2>Over the past two weeks how often did your loved one have problems with:</h2>
             <form onSubmit={props.handleSubmit}>
-                <fieldset>
-                    <legend>Question 1</legend>
+                {questionElements}
+
+                {/* <fieldset>
+                    <legend>Judgment or decision-making</legend>
                     <label >
                         <input 
                             type="radio"
@@ -19,7 +37,7 @@ export default function Questionnaire(props){
                             checked={props.formData.q1 === 0}
                             onChange={props.handleChange}
                          />
-                        None
+                        Not At All (0-1 days)
                     </label>
                     <label >
                         <input 
@@ -29,7 +47,7 @@ export default function Questionnaire(props){
                             checked={props.formData.q1 === 1}
                             onChange={props.handleChange}
                          />
-                        Some
+                        Serveral Days (2-6 days)
                     </label>
                     <label >
                         <input 
@@ -39,7 +57,7 @@ export default function Questionnaire(props){
                             checked={props.formData.q1 === 2}
                             onChange={props.handleChange}
                          />
-                        Often
+                        More than half the days (7-11 days)
                     </label>
                     <label >
                         <input 
@@ -49,7 +67,7 @@ export default function Questionnaire(props){
                             checked={props.formData.q1 === 3}
                             onChange={props.handleChange}
                          />
-                        Always
+                        Almost Daily (12-14 days)
                     </label>
                 </fieldset>
                 <fieldset>
@@ -94,7 +112,7 @@ export default function Questionnaire(props){
                          />
                         Always
                     </label>
-                </fieldset>
+                </fieldset> */}
                 <button>Submit</button>
             </form>
         </>
