@@ -11,7 +11,11 @@ export default function HabcContainer(){
     const [formData, setFormData] = React.useState({})
 
     const [calculatedMetrics, setCalculatedMetrics] = React.useState({
-        totalScore: null
+        totalScore: null,
+        cognitiveScore: null, 
+        functionalScore: null,
+        behaviorScore: null,
+        caregiverScore: null
     })
 
     React.useEffect(() => {
@@ -31,13 +35,36 @@ export default function HabcContainer(){
 
     function calculateMetrics(){
         let sum = 0
+        let cognitiveSum = 0
+        let functionalSum = 0
+        let behaviorSum = 0
+        let caregiverSum = 0
+
         for( let key in formData){
             sum += formData[key]
+
+            const questionNumber = parseInt(key.slice(1))
+
+            if(questionNumber <= 6){
+                cognitiveSum += formData[key]
+            }else if(questionNumber <= 17){
+                functionalSum += formData[key]
+            }else if(questionNumber <= 27){
+                behaviorSum += formData[key]
+            }else{
+                caregiverSum += formData[key]
+            }
         }
+
+
         setCalculatedMetrics( prevCalculatedMetrics => {
             return {
                 ...prevCalculatedMetrics,
-                totalScore: sum
+                totalScore: sum,
+                cognitiveScore: cognitiveSum, 
+                functionalScore: functionalSum,
+                behaviorScore: behaviorSum,
+                caregiverScore: caregiverSum
             }
         })
     }
