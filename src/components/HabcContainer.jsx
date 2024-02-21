@@ -10,6 +10,8 @@ export default function HabcContainer(){
 
     const [formData, setFormData] = React.useState({})
 
+
+    // state for all the calulated scores saved in the doc
     const [calculatedMetrics, setCalculatedMetrics] = React.useState({
         totalScore: null,
         cognitiveScore: null, 
@@ -17,11 +19,23 @@ export default function HabcContainer(){
         behaviorScore: null,
         caregiverScore: null
     })
-
+    // update caluclated metrics when formData changes
     React.useEffect(() => {
         calculateMetrics()
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [formData])
+
+
+    const [showQuestionnaire, setShowQuestionnaire] = React.useState(true)
+
+    function toggleQuestionnaire(){
+        setShowQuestionnaire(prevShowQuestionnaire => !prevShowQuestionnaire)
+    }
+
+    function clearForm(){
+        setFormData({})
+    }
+
 
     function handleChange(e){
         const {name, value} = e.target
@@ -32,6 +46,7 @@ export default function HabcContainer(){
             }
         })
     }
+
 
     function calculateMetrics(){
         let sum = 0
@@ -69,6 +84,7 @@ export default function HabcContainer(){
         })
     }
 
+
     async function addResult(){
         const auth = getAuth()
         const user = auth.currentUser
@@ -85,25 +101,39 @@ export default function HabcContainer(){
         console.log(newDocValues)
     }
 
+
     function handleSubmit(e){
         e.preventDefault()
         console.log(formData)
         try{
-            addResult()
+            // addResult()
             console.log('added doc to firestore')
+            toggleQuestionnaire()
         }catch(error){
             console.error(error)
         }
     } 
 
+
+
     return(
         <>
-            <Questionnaire 
-                formData={formData} 
-                handleChange={handleChange} 
-                handleSubmit={handleSubmit} 
-            />
-            <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
+            {showQuestionnaire ? (
+                <>
+                    <Questionnaire 
+                        formData={formData} 
+                        handleChange={handleChange} 
+                        handleSubmit={handleSubmit} 
+                    />
+                    <br />
+                    <button onClick={clearForm}>Clear Form</button>
+                </>
+            ) : (
+                <>
+                    <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
+                    <button onClick={toggleQuestionnaire}>Return to Quetionnaire</button>
+                </>
+            )}
         </>
     )
 }
