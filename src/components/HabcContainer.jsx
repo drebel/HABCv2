@@ -131,6 +131,7 @@ export default function HabcContainer(){
             ) : (
                 <>
                     <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
+                    <br />
                     <button onClick={toggleQuestionnaire}>Return to Quetionnaire</button>
                 </>
             )}
