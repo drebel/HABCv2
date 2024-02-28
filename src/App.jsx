@@ -5,6 +5,7 @@ import HabcContainer from './components/HabcContainer';
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Signup from './components/Signup'
+import LandingPage from './pages/LandingPage'
 
 import './App.css'
 
@@ -21,11 +22,12 @@ function App() {
 
   return (
     <>
-      {userAuth ? <h1>{userAuth.email}</h1> : <h1>Logged out</h1>}
+      {/* {userAuth ? <h1>{userAuth.email}</h1> : <h1>Logged out</h1>}
       <HabcContainer />
       <Login />
       <Logout />
-      <Signup />
+      <Signup /> */}
+      <LandingPage />
     </>
   )
 }
