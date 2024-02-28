@@ -41,7 +41,7 @@ export default function Login(){
                 <br />
                 <input name='password' placeholder='Password' type="password" />
                 <br />
-                <button>Login</button>
+                <button className=''>Login</button>
             </form>
         </>
     )
