@@ -1,13 +1,19 @@
 import { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
-import HabcContainer from './components/HabcContainer';
+import Navigation from './components/Navigation';
+
+import HabcContainer from './pages/HabcContainer';
+import LandingPage from './pages/LandingPage'
+
+
 import Login from './components/Login'
 import Logout from './components/Logout'
 import Signup from './components/Signup'
-import LandingPage from './pages/LandingPage'
 
 import './App.css'
+
 
 function App() {
   const auth = getAuth()
@@ -22,12 +28,19 @@ function App() {
 
   return (
     <>
+      <Router>
+        <Navigation />
+        <Routes>
+          <Route path='/' element={<LandingPage />}/>
+          <Route path='/habc' element={<HabcContainer />}/>
+        </Routes>
+      </Router>
       {/* {userAuth ? <h1>{userAuth.email}</h1> : <h1>Logged out</h1>}
       <HabcContainer />
       <Login />
       <Logout />
       <Signup /> */}
-      <LandingPage />
+      {/* <LandingPage /> */}
     </>
   )
 }

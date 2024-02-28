@@ -3,8 +3,8 @@ import { db, auth} from '../../config/firestore'
 import { collection, addDoc, serverTimestamp} from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
 
-import Questionnaire from './Questionnaire'
-import Results from './Results'
+import Questionnaire from '../components/Questionnaire'
+import Results from '../components/Results'
 
 export default function HabcContainer(){
 
