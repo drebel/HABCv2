@@ -1,0 +1,5 @@
+.btn-check:checked + .btn-outline-primary {
+    background-color: #007bff; /* Change to desired background color */
+    color: #fff; /* Change to desired text color */
+    border-color: #007bff; /* Change to desired border color */
+  }
