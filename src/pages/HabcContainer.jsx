@@ -45,6 +45,7 @@ export default function HabcContainer(){
                 [name]:Number(value)
             }
         })
+        console.log(formData)
     }
 
 
