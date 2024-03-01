@@ -12,11 +12,9 @@ export default function Navigation(){
           </div>
     
           <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-            <li><Link to="/" className="nav-link px-2 link-secondary">Home</Link></li>
+            <li><Link to="/" className="nav-link px-2">Home</Link></li>
             <li><Link to="/habc" className="nav-link px-2">HABC</Link></li>
-            {/* <li><Link to="#" className="nav-link px-2">Pricing</Link></li>
-            <li><Link to="#" className="nav-link px-2">FAQs</Link></li>
-            <li><Link to="#" className="nav-link px-2">About</Link></li> */}
+            <li><Link to="/testing" className="nav-link px-2">Testing</Link></li>
           </ul>
     
           <div className="col-md-3 text-end">

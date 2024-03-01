@@ -6,6 +6,7 @@ import Navigation from './components/Navigation';
 
 import HabcContainer from './pages/HabcContainer';
 import LandingPage from './pages/LandingPage'
+import Testing from './pages/Testing'
 
 
 import Login from './components/Login'
@@ -33,6 +34,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />}/>
           <Route path='/habc' element={<HabcContainer />}/>
+          <Route path='/testing' element={<Testing />}/>
         </Routes>
       </Router>
       {/* {userAuth ? <h1>{userAuth.email}</h1> : <h1>Logged out</h1>}
