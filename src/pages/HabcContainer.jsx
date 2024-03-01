@@ -119,13 +119,15 @@ export default function HabcContainer(){
 
     return(
         <>
+            <section className='container'>
+
             {showQuestionnaire ? (
                 <>
                     <Questionnaire 
                         formData={formData} 
                         handleChange={handleChange} 
                         handleSubmit={handleSubmit} 
-                    />
+                        />
                     <br />
                     <button onClick={clearForm}>Clear Form</button>
                 </>
@@ -136,6 +138,8 @@ export default function HabcContainer(){
                     <button onClick={toggleQuestionnaire}>Return to Quetionnaire</button>
                 </>
             )}
+            
+            </section>
         </>
     )
 }

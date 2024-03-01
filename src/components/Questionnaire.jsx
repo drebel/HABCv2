@@ -5,8 +5,6 @@
 
 import questions from '../assets/questions'
 import Question from './Question'
-import RadioTest from './RadioTest'
-// import FormTest from './FormTest'
 
 import '../list-group.css'
 
