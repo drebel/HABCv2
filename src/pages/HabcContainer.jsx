@@ -32,7 +32,8 @@ export default function HabcContainer(){
         setShowQuestionnaire(prevShowQuestionnaire => !prevShowQuestionnaire)
     }
 
-    function clearForm(){
+    function handleClearForm(e){
+        e.preventDefault()
         setFormData({})
     }
 
@@ -119,17 +120,18 @@ export default function HabcContainer(){
 
     return(
         <>
-            <section className='container'>
+            <section className='container pb-5'>
 
             {showQuestionnaire ? (
                 <>
                     <Questionnaire 
                         formData={formData} 
                         handleChange={handleChange} 
-                        handleSubmit={handleSubmit} 
+                        handleSubmit={handleSubmit}
+                        handleClearForm={handleClearForm} 
                         />
                     <br />
-                    <button onClick={clearForm}>Clear Form</button>
+
                 </>
             ) : (
                 <>
