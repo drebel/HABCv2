@@ -4,13 +4,10 @@ export default function Question(props){
 
     return(
         <>
-                    <div className='row'>
-                        <fieldset key={props.questionKey}> 
-                            <div>
-                                <div><legend className='col-12 col-lg-5 d-inline-block'>{props.question}</legend></div>
-                                {/* <div className='col-7 d-inline-block'>test</div> */}
-                                <div className='col-12 col-lg-7 d-inline-block d-flex justify-content-center align-items-center'>
-                                    
+                    <div className='row my-3'>
+                            <div className="p-0 d-flex flex-wrap" key={props.questionKey}>
+                                <div className="col-12 col-lg-5 d-flex align-items-center"><legend className='d-inline '>{props.question}</legend></div>
+                                <div className='col-12 col-lg-7 d-inline-block d-flex justify-content-between align-items-center'>
                                     <input
                                         className="btn-check"
                                         id={`${props.name}_none`}
@@ -69,8 +66,8 @@ export default function Question(props){
 
                                 </div>
                             </div>
-                        </fieldset>
                     </div>
+                    <hr />
             {/* <div className="row">
                 <fieldset key={props.questionKey} >
                     <div>
