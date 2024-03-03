@@ -56,8 +56,8 @@ export default function Questionnaire(props){
                 <h2 className='mt-3'>Over the past <strong>two weeks</strong> how often did <strong>you</strong> have problems with:</h2>
                 {questionElements.slice(-4)}
                 <div className='d-flex justify-content-center my-5'>
+                    <button className='btn btn-warning btn-lg px-3 mx-3' onClick={props.handleClearForm}>Clear Form</button>
                     <button className='btn btn-success btn-lg px-3 mx-3'>Submit</button>
-                    <button className='btn btn-outline-warning btn-lg px-3 mx-3' onClick={props.handleClearForm}>Clear Form</button>
                 </div>
 
             </form>

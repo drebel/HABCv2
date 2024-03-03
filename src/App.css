@@ -49,15 +49,12 @@ body {
   color: rgb(var(--bs-tertiary-color-rgb));
 }
 
-fieldset {
-  border: 1px red solid;
-}
-
 legend {
-  border: 1px green solid;
   /* width: auto; */
   padding: 0;
+  margin: 0;
   /* font-weight: bold; */
+  font-size: 1.2rem;
 }
 
 input {
@@ -68,12 +65,8 @@ label {
   border: 1px purple solid;
 }
 
-.col-7{
-  border: pink 1px solid;
-}
-
-.row {
- margin: 0;
+.col-5{
+  border: 1px black solid;
 }
 
 /* #test{
