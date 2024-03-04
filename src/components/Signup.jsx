@@ -1,9 +1,10 @@
 import React from 'react'
-import { getAuth, createUserWithEmailAndPassword  } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
 
-export default function Signup(){
+export default function Signup(props){
     
     const [formData, setFormData] = React.useState({
+        username:'',
         email:'',
         password:'',
         confirmPassword:''
@@ -19,20 +20,27 @@ export default function Signup(){
         })
     }
 
-    function handleLogin(e){
+    function handleSignup(e){
         e.preventDefault()
         if(formData.password != formData.confirmPassword){
             console.log('passwords do not match')
             return
         }
+        console.log(formData)
         const auth = getAuth();
         createUserWithEmailAndPassword(auth, formData.email, formData.password)
           .then((userCredential) => {
             // Signed up 
             const user = userCredential.user;
-            // ...
-            console.log('user signed up!')
-            console.log(user)
+            updateProfile(user, {
+                displayName: formData.username
+            }).then(() => {
+                console.log('user signed up!')
+                console.log(user)
+                props.toggleShowSignup()
+            }).catch((error) => {
+                console.error(error)
+            })
           })
           .catch((error) => {
             console.error(error)
@@ -41,7 +49,7 @@ export default function Signup(){
 
     return(
         <>
-            <h2>Signup</h2>
+            {/* <h2>Signup</h2>
             <form onChange={handleChange} onSubmit={handleLogin}>
                 <input name='email' placeholder='Email' type="text" />
                 <br />
@@ -50,7 +58,41 @@ export default function Signup(){
                 <input name='confirmPassword' placeholder='Confirm Password' type="password" />
                 <br />
                 <button>Login</button>
-            </form>
+            </form> */}
+
+            <div className="modal modal-sheet position-fixed d-block bg-body-secondary p-4 py-md-5" tabIndex="-1" role="dialog" id="modalSignin">
+                <div className="modal-dialog" role="document">
+                    <div className="modal-content rounded-4 shadow">
+                        <div className="modal-header p-5 pb-4 border-bottom-0">
+                            <h1 className="fw-bold mb-0 fs-2">Sign Up For Free</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close" onClick={props.toggleShowSignup}></button>
+                        </div>
+
+                        <div className="modal-body p-5 pt-0">
+                            <form onChange={handleChange} onSubmit={handleSignup}>
+                                <div className="form-floating mb-3">
+                                    <input type="text" className="form-control rounded-3" id="floatingSignupUsername" name='username' placeholder="Username"></input>
+                                    <label htmlFor="floatingSignupUsername">Username</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type="email" className="form-control rounded-3" id="floatingSignupEmail" name='email' placeholder="name@example.com"></input>
+                                    <label htmlFor="floatingSignupEmail">Email address</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type="password" className="form-control rounded-3" id="floatingPassword" name='password' placeholder="Password"></input>
+                                    <label htmlFor="floatingPassword">Password</label>
+                                </div>
+                                <div className="form-floating mb-3">
+                                    <input type="password" className="form-control rounded-3" id="floatingConfirmPassword" name='confirmPassword' placeholder="Confirm Password"></input>
+                                    <label htmlFor="floatingConfirmPassword">Confirm Password</label>
+                                </div>
+                                <button className="w-100 mb-2 btn btn-lg rounded-3 btn-primary">Sign up</button>
+                                <small className="text-body-secondary">By clicking Sign up, you agree to the terms of use.</small>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </>
     )
 }

@@ -46,7 +46,6 @@ export default function Questionnaire(props){
                     </div>
                 </div>
             </div>
-            <hr />
             <h2 className=''>Over the past <strong>two weeks</strong> how often did <strong>your loved one</strong> have problems with:</h2>
 
 

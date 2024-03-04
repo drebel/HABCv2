@@ -27,22 +27,20 @@ function App() {
     return () => unsubscribe()
   },[auth])
 
+
+
   return (
     <>
       <Router>
-        <Navigation />
+        <Navigation 
+          userAuth={userAuth}
+        />
         <Routes>
           <Route path='/' element={<LandingPage />}/>
           <Route path='/habc' element={<HabcContainer />}/>
           <Route path='/testing' element={<Testing />}/>
         </Routes>
       </Router>
-      {/* {userAuth ? <h1>{userAuth.email}</h1> : <h1>Logged out</h1>}
-      <HabcContainer />
-      <Login />
-      <Logout />
-      <Signup /> */}
-      {/* <LandingPage /> */}
     </>
   )
 }
