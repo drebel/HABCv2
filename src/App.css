@@ -72,3 +72,7 @@ label {
 /* #test{
   display: ;
 } */
+
+.modal {
+  z-index: 1000;
+}
