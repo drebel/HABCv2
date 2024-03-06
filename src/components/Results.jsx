@@ -3,6 +3,8 @@ import {db} from '../../config/firestore'
 import {collection, getDocs, where, query} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 
+import Chart from './Chart'
+
 export default function Results(props){
 
     // async function getResults(){
@@ -27,8 +29,10 @@ export default function Results(props){
 
     return(
         <>
+            <Chart 
+                calculatedMetrics={props.calculatedMetrics}
+            />
             <table>
-                <caption>Your Results</caption>
                 <thead>
                     <tr>
                         <th scope='col'></th>
@@ -62,6 +66,7 @@ export default function Results(props){
                     </tr>
                 </thead>
             </table>
+
 
             {/* <h2>Total Score: {props.calculatedMetrics.totalScore}</h2>
             <p>Ideal total score: less than 14 or 50% reduction from baseline score by 12 months</p>
