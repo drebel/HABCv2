@@ -40,7 +40,8 @@ export default function Chart(props){
             type: 'scatter',
             mode: 'lines',
             line: { color: 'black', dash:'dashdot'},
-            name: 'Total Score Cut off', // Optional: add a name for the trace
+            name: 'Total Score Cut off', 
+            // legendgroup: 'total',
         },
         {
             x: xValues,
@@ -48,7 +49,8 @@ export default function Chart(props){
             type: 'scatter',
             mode: 'lines+markers',
             marker: { color: 'black' },
-            name: 'Total Score', // Optional: add a name for the trace
+            name: 'Total Score',
+            // legendgroup: 'total', 
         },
         {
             x: xValues,
@@ -56,7 +58,7 @@ export default function Chart(props){
             type: 'scatter',
             mode: 'lines+markers',
             marker: { color: 'red' },
-            name: 'Cognitive Subscore', // Optional: add a name for the trace
+            name: 'Cognitive Subscore', 
         },
         {
             x: xValues,
@@ -64,7 +66,7 @@ export default function Chart(props){
             type: 'scatter',
             mode: 'lines+markers',
             marker: { color: 'orange' },
-            name: 'Functional Subscore', // Optional: add a name for the trace
+            name: 'Functional Subscore', 
         },
         {
             x: xValues,
@@ -72,7 +74,7 @@ export default function Chart(props){
             type: 'scatter',
             mode: 'lines+markers',
             marker: { color: 'green' },
-            name: 'Behavior Subscore', // Optional: add a name for the trace
+            name: 'Behavior Subscore', 
         },
         {
             x: xValues,
@@ -80,14 +82,26 @@ export default function Chart(props){
             type: 'scatter',
             mode: 'lines+markers',
             marker: { color: 'blue' },
-            name: 'Caregiver Stress Subscore', // Optional: add a name for the trace
+            name: 'Caregiver Stress Subscore',
         },
-
-        // Add more trace objects as needed
     ]
 
     const layout = {
-        dragmode:'pan'
+        dragmode:'pan',
+        autosize: true,
+        aspectratio: { x: 1, y: 2 },
+        legend: {"orientation": "h"},
+        // yaxis: {fixedrange:true,
+        //     range: [0, 93] }, 
+        paper_bgcolor: '#edfbf7',
+        plot_bgcolor: '#ffffff',
+        margin: {
+            l: 20,
+            r: 20,
+            b: 100,
+            t: 40,
+            pad: 0
+          },
     }
 
     const config = {
@@ -97,10 +111,14 @@ export default function Chart(props){
 
 
     return (
-        <Plot 
-            data={data}
-            layout={layout}
-            config={config}
-        />
+        <div style={{ height: '85vh' }}>
+            <Plot 
+                data={data}
+                layout={layout}
+                config={config}
+                useResizeHandler={true}
+                style={{width: '100%', height:'100%'}}
+                />
+        </div>
     )
 }

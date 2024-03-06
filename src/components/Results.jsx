@@ -32,7 +32,7 @@ export default function Results(props){
             <Chart 
                 calculatedMetrics={props.calculatedMetrics}
             />
-            <table>
+            <table className='mx-auto'>
                 <thead>
                     <tr>
                         <th scope='col'></th>
