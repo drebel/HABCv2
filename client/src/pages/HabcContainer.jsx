@@ -1,7 +1,6 @@
 import React from 'react'
-import { db, auth} from '../../config/firestore'
-import { collection, addDoc, serverTimestamp} from 'firebase/firestore'
 import { getAuth } from 'firebase/auth'
+import axios from 'axios'
 
 import Questionnaire from '../components/Questionnaire'
 import Results from '../components/Results'
@@ -10,8 +9,6 @@ export default function HabcContainer(){
 
     const [formData, setFormData] = React.useState({})
 
-
-    // state for all the calulated scores saved in the doc
     const [calculatedMetrics, setCalculatedMetrics] = React.useState({
         totalScore: null,
         cognitiveScore: null, 
@@ -19,7 +16,7 @@ export default function HabcContainer(){
         behaviorScore: null,
         caregiverScore: null
     })
-    // update caluclated metrics when formData changes
+
     React.useEffect(() => {
         calculateMetrics()
         // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -91,25 +88,21 @@ export default function HabcContainer(){
         const auth = getAuth()
         const user = auth.currentUser
         
-        const currentTime = serverTimestamp()
 
         const newDocValues = {
             createdBy: user.uid,
-            createdAt: currentTime,
-            ...formData,
-            ...calculatedMetrics,
+            rawScores: formData,
+            calculatedMetrics: calculatedMetrics,
         }
-        await addDoc(collection(db, "HABC-responses"), newDocValues);
-        console.log(newDocValues)
+
+        await axios.post('http://localhost:5000/score', newDocValues)
     }
 
 
     function handleSubmit(e){
         e.preventDefault()
-        console.log(formData)
         try{
-            // addResult()
-            console.log('added doc to firestore')
+            addResult()
             toggleQuestionnaire()
         }catch(error){
             console.error(error)
