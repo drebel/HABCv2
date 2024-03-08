@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
 
 export default function Login(props){
     
@@ -18,15 +18,14 @@ export default function Login(props){
         })
     }
 
-    function handleLogin(e){
+    async function handleLogin(e){
         e.preventDefault()
+
         const auth = getAuth();
         signInWithEmailAndPassword(auth, formData.email, formData.password)
         .then((userCredential) => {
-            // Signed in 
             const user = userCredential.user;
             console.log('user has signed in',user)
-            // ...
             props.toggleShowLogin()
         })
         .catch((error) => {

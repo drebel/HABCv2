@@ -16,7 +16,12 @@ import Signup from './components/Signup'
 import './App.css'
 
 
+
+
 function App() {
+  const [token, setToken] = useState(localStorage.getItem('token'))
+
+
   const auth = getAuth()
   const [userAuth, setUserAuth] = useState(null)
 

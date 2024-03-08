@@ -1,27 +1,28 @@
 const express = require('express')
 const cors = require('cors')
+const mongoose = require("mongoose")
+const connectDB = require("./config/database");
+
+
 require('dotenv').config({ path: "./config/.env" })
-const admin = require('firebase-admin')
-const serviceAccount = require('./config/habc-m-firebase-adminsdk-rcscs-5568042193.json')
 
 const authRoutes = require('./routes/authRoute')
+const scoreRoutes = require('./routes/scoreRoute')
 
 const app = express()
 
 app.use(cors())
 app.use(express.json())
 
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount)
-})
-
 
 app.use('/auth', authRoutes)
+app.use('/score', scoreRoutes)
 
-
-app.listen(process.env.PORT, () => {
-    console.log(`Server is running on port ${process.env.PORT}`)
-})
+connectDB().then(() => {
+    app.listen(process.env.PORT, () => {
+        console.log("listening for requests")
+    })
+  }) 
 
 
 // const connectDB = require('./config/firebase')
