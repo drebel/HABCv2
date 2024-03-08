@@ -1,6 +1,6 @@
-const { initializeApp } = require("firebase/app")
-const { getFirestore } = require("firebase/firestore")
-const { getAuth } = require("firebase/auth")
+const { initializeApp } = require("firebase-admin/app")
+const { getFirestore } = require("firebase-admin/firestore")
+const { getAuth } = require("firebase-admin/auth")
 require('dotenv').config()
 
 const firebaseConfig = {
@@ -29,6 +29,8 @@ const connectDB = async () => {
     
         const auth = getAuth(firebaseApp)
         console.log('Connected to Firebase Auth')
+
+        return { db, auth }
     } catch (err) {
       console.error(err)
       process.exit(1)
@@ -36,4 +38,4 @@ const connectDB = async () => {
 }
 
 
-module.exports = connectDB
+module.exports = connectDB 
