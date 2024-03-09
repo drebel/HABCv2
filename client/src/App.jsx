@@ -6,6 +6,7 @@ import Navigation from './components/Navigation';
 
 import HabcContainer from './pages/HabcContainer';
 import LandingPage from './pages/LandingPage'
+import DashboardPage from './pages/DashboardPage'
 import Testing from './pages/Testing'
 
 
@@ -43,6 +44,9 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />}/>
           <Route path='/habc' element={<HabcContainer />}/>
+          <Route path='/dashboard' element={<DashboardPage 
+            userAuth={userAuth}
+          />}/>
           <Route path='/testing' element={<Testing />}/>
         </Routes>
       </Router>

@@ -11,11 +11,6 @@ import { getAuth } from 'firebase/auth'
 export default function Testing(){
 
     async function getScores(){
-        // get user id
-        // send the user id in axios get request to server on sepcific route
-        // this is the route XXX
-        // wait to get back an array of docs
-        // console log doc array
         const auth = getAuth()
         const user = auth.currentUser
         console.log(user.uid)

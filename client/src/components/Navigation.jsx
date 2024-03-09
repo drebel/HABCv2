@@ -30,6 +30,7 @@ export default function Navigation(props){
           <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><Link to="/" className="nav-link px-2">Home</Link></li>
             <li><Link to="/habc" className="nav-link px-2">HABC</Link></li>
+            <li><Link to="/dashboard" className="nav-link px-2">Dashboard</Link></li>
             <li><Link to="/testing" className="nav-link px-2">Testing</Link></li>
           </ul>
     
