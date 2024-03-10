@@ -2,17 +2,13 @@ import { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 
-import Navigation from './components/Navigation';
+import Navigation from './components/Navigation'
+import AuthRequired from './components/AuthRequired'
 
-import HabcContainer from './pages/HabcContainer';
+import HabcContainer from './pages/HabcContainer'
 import LandingPage from './pages/LandingPage'
 import DashboardPage from './pages/DashboardPage'
 import Testing from './pages/Testing'
-
-
-import Login from './components/Login'
-import Logout from './components/Logout'
-import Signup from './components/Signup'
 
 import './App.css'
 
@@ -20,8 +16,6 @@ import './App.css'
 
 
 function App() {
-  const [token, setToken] = useState(localStorage.getItem('token'))
-
 
   const auth = getAuth()
   const [userAuth, setUserAuth] = useState(null)
@@ -44,9 +38,11 @@ function App() {
         <Routes>
           <Route path='/' element={<LandingPage />}/>
           <Route path='/habc' element={<HabcContainer />}/>
-          <Route path='/dashboard' element={<DashboardPage 
-            userAuth={userAuth}
-          />}/>
+          <Route element={<AuthRequired userAuth={userAuth}/>}>
+            <Route path='/dashboard' element={<DashboardPage 
+              userAuth={userAuth}
+            />}/>
+          </Route>
           <Route path='/testing' element={<Testing />}/>
         </Routes>
       </Router>

@@ -30,18 +30,15 @@ export default function Navigation(props){
           <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
             <li><Link to="/" className="nav-link px-2">Home</Link></li>
             <li><Link to="/habc" className="nav-link px-2">HABC</Link></li>
-            <li><Link to="/dashboard" className="nav-link px-2">Dashboard</Link></li>
+
+            {
+              props.userAuth && 
+              <li><Link to="/dashboard" className="nav-link px-2">Dashboard</Link></li>
+            }
             <li><Link to="/testing" className="nav-link px-2">Testing</Link></li>
           </ul>
     
           <div className="col-md-3 text-end">
-            {/* if userAuth is null show login sign up buttons 
-              login sign up buttons show a modal with respective sign up stuff
-
-              if userauth is good, show the name of the person whos logged in and logout button
-
-              l=
-            */}
             {
               props.userAuth ? 
               <>
