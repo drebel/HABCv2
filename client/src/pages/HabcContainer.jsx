@@ -1,4 +1,5 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 import { getAuth } from 'firebase/auth'
 import axios from 'axios'
 
@@ -6,6 +7,10 @@ import Questionnaire from '../components/Questionnaire'
 import Results from '../components/Results'
 
 export default function HabcContainer(){
+
+    const auth = getAuth()
+    const user = auth.currentUser
+    let navigate = useNavigate()
 
     const [formData, setFormData] = React.useState({})
 
@@ -85,27 +90,37 @@ export default function HabcContainer(){
 
 
     async function addResult(){
-        const auth = getAuth()
-        const user = auth.currentUser
-        
+        try{
+            const newDocValues = {
+                createdBy: user.uid,
+                rawScores: formData,
+                calculatedMetrics: calculatedMetrics,
+            }
 
-        const newDocValues = {
-            createdBy: user.uid,
-            rawScores: formData,
-            calculatedMetrics: calculatedMetrics,
+            await axios.post('http://localhost:5000/score', newDocValues)
+        }catch(error){
+            console.error(error)
         }
 
-        await axios.post('http://localhost:5000/score', newDocValues)
+
     }
 
 
-    function handleSubmit(e){
+    async function handleSubmit(e){
         e.preventDefault()
-        try{
-            addResult()
-            toggleQuestionnaire()
-        }catch(error){
-            console.error(error)
+        if(user){
+            try{
+                await addResult()
+                navigate('/dashboard')
+            }catch(error){
+                console.error(error)
+            }
+        }else{
+            try{
+                toggleQuestionnaire()
+            }catch(error){
+                console.error(error)
+            }
         }
     } 
 
