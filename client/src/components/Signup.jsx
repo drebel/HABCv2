@@ -1,7 +1,10 @@
 import React from 'react'
 import { getAuth, createUserWithEmailAndPassword , updateProfile } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
 
 export default function Signup(props){
+
+    const navigate = useNavigate()
     
     const [formData, setFormData] = React.useState({
         username:'',
@@ -20,31 +23,34 @@ export default function Signup(props){
         })
     }
 
-    function handleSignup(e){
+    async function handleSignup(e){
         e.preventDefault()
         if(formData.password != formData.confirmPassword){
             console.log('passwords do not match')
             return
         }
-        console.log(formData)
-        const auth = getAuth();
-        createUserWithEmailAndPassword(auth, formData.email, formData.password)
-          .then((userCredential) => {
-            // Signed up 
+        try{
+            console.log(formData)
+            const auth = getAuth();
+            const userCredential = await createUserWithEmailAndPassword(auth, formData.email, formData.password)
             const user = userCredential.user;
-            updateProfile(user, {
+            await updateProfile(user, {
                 displayName: formData.username
-            }).then(() => {
-                console.log('user signed up!')
-                console.log(user)
-                props.toggleShowSignup()
-            }).catch((error) => {
-                console.error(error)
             })
-          })
-          .catch((error) => {
+            console.log('user signed up!')
+            console.log(user)
+            
+            if(localStorage.getItem('guestScore')){
+                props.addGuestScore(user)
+                props.toggleShowSignup()
+
+                navigate('/dashboard')
+            }else{
+                props.toggleShowSignup()
+            }
+        }catch(error){
             console.error(error)
-          });
+        }
     }
 
     return(

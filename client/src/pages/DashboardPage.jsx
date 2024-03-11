@@ -52,7 +52,7 @@ export default function DashboardPage(props){
     }
 
     if(xValues.length == 1){
-        const date = new Date (score.createdAt)
+        const date = new Date (scoresArray[0].createdAt)
         date.setDate(date.getDate() - 1)
         const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
         xValues.unshift(formattedDate)

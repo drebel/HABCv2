@@ -5,8 +5,10 @@ import axios from 'axios'
 
 import Questionnaire from '../components/Questionnaire'
 import Results from '../components/Results'
+import Login from '../components/Login'
+import Signup from '../components/Signup'
 
-export default function HabcContainer(){
+export default function HabcContainer(props){
 
     const auth = getAuth()
     const user = auth.currentUser
@@ -116,14 +118,10 @@ export default function HabcContainer(){
                 console.error(error)
             }
         }else{
-            try{
-                toggleQuestionnaire()
-            }catch(error){
-                console.error(error)
-            }
+            toggleQuestionnaire()
+            localStorage.setItem('guestScore', JSON.stringify({rawScores:formData, calculatedMetrics: calculatedMetrics}))
         }
     } 
-
 
 
     return(
@@ -147,6 +145,12 @@ export default function HabcContainer(){
                         <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
                         <br />
                         <button className='btn btn-outline-primary' onClick={toggleQuestionnaire}>Return to Quetionnaire</button>
+                        <div>
+                            <h4>Your data isnt saved!</h4>
+                            <h5>Log in or sign up to save your score</h5>
+                            <button type="button" className="btn btn-outline-primary me-2" onClick={props.toggleShowLogin}>Login</button>
+                            <button type="button" className="btn btn-primary" onClick={props.toggleShowSignup}>Sign-up</button>
+                        </div>
                     </div>
                 </>
             )}

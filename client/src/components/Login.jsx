@@ -1,7 +1,11 @@
 import React from 'react'
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { useNavigate } from 'react-router-dom';
+
 
 export default function Login(props){
+
+    const navigate = useNavigate()
     
     const [formData, setFormData] = React.useState({
         email:'',
@@ -22,15 +26,21 @@ export default function Login(props){
         e.preventDefault()
 
         const auth = getAuth();
-        signInWithEmailAndPassword(auth, formData.email, formData.password)
-        .then((userCredential) => {
+        try{
+            const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password)
             const user = userCredential.user;
             console.log('user has signed in',user)
-            props.toggleShowLogin()
-        })
-        .catch((error) => {
+            if(localStorage.getItem('guestScore')){
+                props.addGuestScore(user)
+                navigate('/dashboard')
+                props.toggleShowLogin()
+
+            }else{
+                props.toggleShowLogin()
+            }
+        }catch(error){
             console.error(error)
-        });
+        }
     }
 
     function handlePasswordReset(e){
