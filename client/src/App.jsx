@@ -27,17 +27,36 @@ function App() {
     return () => unsubscribe()
   },[auth])
 
+  const [showLogin, setShowLogin] = useState(false)
 
+  function toggleShowLogin(){
+    setShowLogin(prevShowLogin => !prevShowLogin)
+  }
+
+  const [showSignup, setShowSignup] = useState(false)
+
+  function toggleShowSignup(){
+    setShowSignup(prevShowSignup => !prevShowSignup)
+  }
 
   return (
     <>
       <Router>
         <Navigation 
           userAuth={userAuth}
+          showLogin={showLogin}
+          toggleShowLogin={toggleShowLogin}
+          showSignup={showSignup}
+          toggleShowSignup={toggleShowSignup}
         />
         <Routes>
           <Route path='/' element={<LandingPage />}/>
-          <Route path='/habc' element={<HabcContainer />}/>
+          <Route path='/habc' element={<HabcContainer 
+            showLogin={showLogin}
+            toggleShowLogin={toggleShowLogin}
+            showSignup={showSignup}
+            toggleShowSignup={toggleShowSignup}
+          />}/>
           <Route element={<AuthRequired userAuth={userAuth}/>}>
             <Route path='/dashboard' element={<DashboardPage 
               userAuth={userAuth}
