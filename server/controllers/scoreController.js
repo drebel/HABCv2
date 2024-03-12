@@ -7,8 +7,7 @@ module.exports= {
         // return the array with all the docs
         const uid = req.query.uid
         try{
-
-            const scoresArray = await Score.find({ createdBy: uid})
+            const scoresArray = await Score.find({ createdBy: uid}).sort({createdAt: -1})
             res.send(scoresArray)
         }catch(err){
             res.send({ message: err.message })

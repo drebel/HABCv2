@@ -6,9 +6,11 @@ import LongChart from '../components/LongChart'
 export default function DashboardPage(props){
 
     const [scoresArray, setScoresArray] = React.useState([])
+    const [recentScore, setRecentScore] = React.useState({})
 
 
     React.useEffect(() => {
+        
         async function getScores(){
             try{
                 const res = await axios.get(`http://localhost:5000/score?uid=${props.userAuth.uid}`)
@@ -24,6 +26,10 @@ export default function DashboardPage(props){
         }
 
     }, [props.userAuth])
+
+    React.useEffect(() => {
+        setRecentScore(scoresArray[0])
+    },[scoresArray])
 
 
 
@@ -51,18 +57,30 @@ export default function DashboardPage(props){
         caregiverScoreY.push(score.calculatedMetrics.caregiverScore)
     }
 
-    if(xValues.length == 1){
-        const date = new Date (scoresArray[0].createdAt)
-        date.setDate(date.getDate() - 1)
-        const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
-        xValues.unshift(formattedDate)
+    //Add a inital datapoint of 0 so you can see a line if theres only one user score saved
+    // if(xValues.length == 1){
+    //     const date = new Date (scoresArray[0].createdAt)
+    //     date.setDate(date.getDate() - 1)
+    //     const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
+    //     xValues.unshift(formattedDate)
 
-        docIds.unshift(0)
-        totalScoreY.unshift(0)
-        cognitiveScoreY.unshift(0)
-        functionalScoreY.unshift(0)
-        behaviorScoreY.unshift(0)
-        caregiverScoreY.unshift(0)
+    //     docIds.unshift(0)
+    //     totalScoreY.unshift(0)
+    //     cognitiveScoreY.unshift(0)
+    //     functionalScoreY.unshift(0)
+    //     behaviorScoreY.unshift(0)
+    //     caregiverScoreY.unshift(0)
+    // }
+
+    function showScores(e){
+        e.preventDefault()
+        console.log(recentScore)
+        const rawScoresObj = recentScore.rawScores
+        const entriesArray = Object.entries(rawScoresObj)
+            .filter(([key,value]) => value > 0)
+            .sort((a,b) => b[1] - a[1])
+        console.log(entriesArray)
+
     }
 
     return (
@@ -78,9 +96,7 @@ export default function DashboardPage(props){
                 behaviorScoreCutoff={behaviorScoreCutoff}
                 caregiverScoreCutoff={caregiverScoreCutoff}
             />
-            {/* <form onSubmit={handleSubmit}>
-                <button>get all scores</button>
-            </form> */}
+            <button onClick={showScores}>Show Scores</button>
         </>
     )
 }
