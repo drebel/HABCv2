@@ -76,3 +76,11 @@ label {
 .modal {
   z-index: 1000;
 }
+
+ol li {
+  font-size: 1.2rem;
+}
+
+/* ol > li {
+  font-weight: 600;
+} */

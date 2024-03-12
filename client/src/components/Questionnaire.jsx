@@ -23,7 +23,7 @@ export default function Questionnaire(props){
         <>
             <h2 className='text-center display-5 fw-bold'>Healthy Aging Brain Care Monitor</h2>
             <div className='text-center'>Estimated time: 6 minutes</div>
-            <div className='py-2 bg-white'>
+            <div className='py-2 bg-white my-3'>
                 <div className='mb-2'>
                     <div className="accordion" id="accordionExample">
                         <div className="accordion-item">
@@ -34,12 +34,26 @@ export default function Questionnaire(props){
                             </h2>
                             <div id="collapseOne" className="accordion-collapse collapse show" data-bs-parent="#accordionExample">
                                 <div className="accordion-body">
-                                    <ul>
-                                        <li>Please mark each item based on your first reaction</li>
-                                        <li>Evidence of actual change is NOT as important as your gut instinct</li>
-                                        <li>There are no formal definitions for the symptoms you are being asked to rate, although, in some cases, examples of the symptom are included</li>
-                                        <li>In general, whatever the term means to you is a reasonable and acceptable definition</li>
-                                    </ul>
+                                    <ol>
+                                        <li className='py-2'>Please mark each item based on your first reaction.
+                                            <ul>
+                                                <li>Your gut instinct is more important than having actual evidence of a problem with any symptom.</li>
+                                            </ul>
+                                        </li>
+                                        <li className='py-2'>There are no formal definitions for the symptoms.
+                                            <ul>
+                                                <li>In general, whatever the term means to you is a reasonable and acceptable definition.</li>
+                                            </ul>    
+                                        </li> 
+                                        <li className='py-2'>A "problem" occurs only when your loved one has difficulty with the symptom AND either you or your loved one are distressed by that. For example:
+                                            
+                                            <ul>
+                                                <li className='py-2'>Suppose your loved one is unable to do household chores, but you have hired someone to do the housework AND both you and your loved one are comfortable with that arrangement. In this case, your loved one's inability to do household chores <strong>would not be considered a problem.</strong></li>
+                                                <li className='py-2'>However, if you were able to hire a housekeeper but your loved one did not like the person you hired and became agitated whenever the housekeeper was there, then your loved one's inability to do household chores <strong>would be considered a problem</strong> because it is causing one of you distress.</li>
+                                            </ul>
+                                        </li>
+                                    </ol>
+                                          
                                 </div>
                             </div>
                         </div>
@@ -51,12 +65,11 @@ export default function Questionnaire(props){
 
             <form onSubmit={props.handleSubmit}>
                 {questionElements.slice(0,-4)}
-                <hr />
                 <h2 className='mt-3'>Over the past <strong>two weeks</strong> how often did <strong>you</strong> have problems with:</h2>
                 {questionElements.slice(-4)}
                 <div className='d-flex justify-content-center my-5'>
-                    <button className='btn btn-warning btn-lg px-3 mx-3' onClick={props.handleClearForm}>Clear Form</button>
-                    <button className='btn btn-success btn-lg px-3 mx-3'>Submit</button>
+                    <button className='btn btn-outline-secondary btn-lg px-3 mx-3' onClick={props.handleClearForm}>Reset</button>
+                    <button className='btn btn-primary btn-lg px-3 mx-3'>Submit</button>
                 </div>
 
             </form>

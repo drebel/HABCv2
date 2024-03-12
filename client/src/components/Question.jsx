@@ -4,7 +4,7 @@ export default function Question(props){
 
     return(
         <>
-                    <div className='row my-3'>
+                    <div className='row my-3 px-1'>
                             <div className="p-0 d-flex flex-wrap" key={props.questionKey}>
                                 <div className="col-12 col-lg-5 d-flex align-items-center"><legend className='d-inline '>{props.question}</legend></div>
                                 <div className='col-12 col-lg-7 d-inline-block d-flex justify-content-between align-items-center'>
