@@ -3,6 +3,9 @@ import axios from 'axios'
 
 import LongChart from '../components/LongChart'
 
+import eduModules from '../assets/eduModules'
+import questionToModules from '../assets/questionToModules'
+
 export default function DashboardPage(props){
 
     const [scoresArray, setScoresArray] = React.useState([])
@@ -80,6 +83,18 @@ export default function DashboardPage(props){
             .filter(([key,value]) => value > 0)
             .sort((a,b) => b[1] - a[1])
         console.log(entriesArray)
+        const keys = entriesArray.map(element => element[0])
+        console.log(keys)
+        const unfilteredModuleIds = []
+        for(const q of keys){
+            if(questionToModules[q].length !== 0){
+                unfilteredModuleIds.push(questionToModules[q])
+            }
+        }
+        console.log(unfilteredModuleIds)
+        const uniqueArray = [...new Set(unfilteredModuleIds.flat())];
+        console.log(uniqueArray)
+        // returns unique array of education modules based on the users score
 
     }
 
@@ -97,6 +112,9 @@ export default function DashboardPage(props){
                 caregiverScoreCutoff={caregiverScoreCutoff}
             />
             <button onClick={showScores}>Show Scores</button>
+            <div>
+
+            </div>
         </>
     )
 }
