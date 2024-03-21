@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 import LongChart from '../components/LongChart'
+import RecentScore from '../components/RecentScore'
 
 import eduModules from '../assets/eduModules'
 import questionToModules from '../assets/questionToModules'
@@ -115,6 +116,8 @@ export default function DashboardPage(props){
                 behaviorScoreCutoff={behaviorScoreCutoff}
                 caregiverScoreCutoff={caregiverScoreCutoff}
             />
+            <RecentScore recentScore={recentScore}/>
+
         </>
     )
 }
