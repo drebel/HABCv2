@@ -95,11 +95,15 @@ export default function DashboardPage(props){
         const uniqueArray = [...new Set(unfilteredModuleIds.flat())];
         console.log(uniqueArray)
         // returns unique array of education modules based on the users score
-
+        const titles = uniqueArray.map(e => {
+            return eduModules[e].title
+        })
+        console.log(titles)
     }
 
     return (
         <>
+            <button onClick={showScores}>Show Scores</button>
             <LongChart 
                 xValues={xValues}
                 totalScoreY={totalScoreY}
@@ -111,10 +115,6 @@ export default function DashboardPage(props){
                 behaviorScoreCutoff={behaviorScoreCutoff}
                 caregiverScoreCutoff={caregiverScoreCutoff}
             />
-            <button onClick={showScores}>Show Scores</button>
-            <div>
-
-            </div>
         </>
     )
 }
