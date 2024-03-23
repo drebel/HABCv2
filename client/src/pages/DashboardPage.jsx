@@ -42,7 +42,7 @@ export default function DashboardPage(props){
 
     React.useEffect(() => {
         if (scoresArray.length > 0) {
-            setRecentScore(scoresArray[0])
+            setRecentScore(scoresArray[scoresArray.length-1])
         }
     },[scoresArray])
 
