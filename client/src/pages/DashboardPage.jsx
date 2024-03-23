@@ -3,6 +3,7 @@ import axios from 'axios'
 
 import LongChart from '../components/LongChart'
 import RecentScore from '../components/RecentScore'
+import ActionItems from '../components/ActionItems'
 
 import eduModules from '../assets/eduModules'
 import questionToModules from '../assets/questionToModules'
@@ -10,7 +11,15 @@ import questionToModules from '../assets/questionToModules'
 export default function DashboardPage(props){
 
     const [scoresArray, setScoresArray] = React.useState([])
-    const [recentScore, setRecentScore] = React.useState({})
+    const [recentScore, setRecentScore] = React.useState({
+        calculatedMetrics:{
+            totalScore:'',
+            cognitiveScore:'',
+            functionalScore:'',
+            behaviorScore:'',
+            caregiverScore:'',
+        }
+    })
 
 
     React.useEffect(() => {
@@ -32,7 +41,9 @@ export default function DashboardPage(props){
     }, [props.userAuth])
 
     React.useEffect(() => {
-        setRecentScore(scoresArray[0])
+        if (scoresArray.length > 0) {
+            setRecentScore(scoresArray[scoresArray.length-1])
+        }
     },[scoresArray])
 
 
@@ -79,6 +90,12 @@ export default function DashboardPage(props){
     function showScores(e){
         e.preventDefault()
         console.log(recentScore)
+
+        if (!recentScore || !recentScore.rawScores) {
+            console.log("Recent score data is not available yet.")
+            return
+        }
+
         const rawScoresObj = recentScore.rawScores
         const entriesArray = Object.entries(rawScoresObj)
             .filter(([key,value]) => value > 0)
@@ -117,6 +134,7 @@ export default function DashboardPage(props){
                 caregiverScoreCutoff={caregiverScoreCutoff}
             />
             <RecentScore recentScore={recentScore}/>
+            <ActionItems recentScore={recentScore}/>
 
         </>
     )
