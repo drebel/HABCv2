@@ -18,8 +18,10 @@ export default function DashboardPage(props){
             functionalScore:'',
             behaviorScore:'',
             caregiverScore:'',
-        }
+        },
+        rawScores:{}
     })
+    const [tips, setTips] = React.useState([])
 
 
     React.useEffect(() => {
@@ -45,6 +47,34 @@ export default function DashboardPage(props){
             setRecentScore(scoresArray[scoresArray.length-1])
         }
     },[scoresArray])
+
+    React.useEffect(() => {
+        if (!recentScore || !recentScore.rawScores) {
+            console.log("Recent score data is not available yet.")
+            console.log(recentScore,recentScore.rawScores)
+            return
+        }
+
+        const rawScoresObj = recentScore.rawScores
+        const entriesArray = Object.entries(rawScoresObj)
+            .filter(([key,value]) => value > 0)
+            .sort((a,b) => b[1] - a[1])
+        // console.log(entriesArray)
+        const keys = entriesArray.map(element => element[0])
+        // console.log(keys)
+        const unfilteredModuleIds = []
+        for(const q of keys){
+            if(questionToModules[q].length !== 0){
+                unfilteredModuleIds.push(questionToModules[q])
+            }
+        }
+        // console.log(unfilteredModuleIds)
+        const uniqueArray = [...new Set(unfilteredModuleIds.flat())];
+        // console.log(uniqueArray)
+        // returns unique array of education modules based on the users score
+        const modules = uniqueArray.map(e => eduModules[e])
+        setTips(modules)
+    },[recentScore, recentScore.rawScores])
 
 
 
@@ -87,6 +117,11 @@ export default function DashboardPage(props){
     //     caregiverScoreY.unshift(0)
     // }
 
+    function test(e){
+        e.preventDefault(e)
+        console.log(tips)
+    }
+
     function showScores(e){
         e.preventDefault()
         console.log(recentScore)
@@ -121,7 +156,6 @@ export default function DashboardPage(props){
 
     return (
         <>
-            <button onClick={showScores}>Show Scores</button>
             <LongChart 
                 xValues={xValues}
                 totalScoreY={totalScoreY}
@@ -133,8 +167,13 @@ export default function DashboardPage(props){
                 behaviorScoreCutoff={behaviorScoreCutoff}
                 caregiverScoreCutoff={caregiverScoreCutoff}
             />
+            <button onClick={showScores}>Show Scores</button>
+            <button onClick={test}>test</button>
             <RecentScore recentScore={recentScore}/>
-            <ActionItems recentScore={recentScore}/>
+            <ActionItems
+                recentScore={recentScore}
+                tips={tips}
+                />
 
         </>
     )
