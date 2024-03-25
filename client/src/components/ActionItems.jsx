@@ -27,6 +27,29 @@ export default function ActionItems(props){
             }
         }
     },[props.recentScore])
+    
+
+    const accordionTipElements = props.tips.map((item, index) => {
+        const collapseId = `collapse${index}`
+        const parentId = `accordionItemTips${index}`
+
+        return (
+
+            <div className="accordion-item" key={`accordionItem${index}`}>
+                <h2 className="accordion-header">
+                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#${collapseId}`} aria-expanded="true" aria-controls={collapseId}>
+                        <h2 className=''>{item.title}</h2>
+                    </button>
+                </h2>
+                <div id={collapseId} className="accordion-collapse collapse" aria-labelledby={`heading${index}`} data-bs-parent={`#${parentId}`}>
+                    <div className="accordion-body">
+                        {item.content}
+                    </div>
+                </div>
+            </div>
+        )
+    })
+
 
 
     return(
@@ -39,7 +62,7 @@ export default function ActionItems(props){
                         <h2 className=''>1. Understanding My Score</h2>
                     </button>
                 </h2>
-                <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionItems">
+                <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionItem1">
                     <div className="accordion-body">
                         <div className="row">
                             {
@@ -176,15 +199,30 @@ export default function ActionItems(props){
                         <h2 className=''>2. Personalized Tips</h2>
                     </button>
                 </h2>
-                <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionItems">
+                <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionItem2">
                     <div className="accordion-body">
                         <p>Here are a few education modules for you based on your responses:</p>
                         <ul>
-                            <li></li>
-                            <li></li>
-                            <li></li>
-                            <li></li>
+                            {props.tips.map((item,index) => {
+                                return <li key={`tip${index}`}>{item.title}</li>
+                            })}
                         </ul>
+
+                        <div className="accordion" id="accordionItemsTips">
+                            {accordionTipElements}
+                            {/* <div className="accordion-item">
+                                <h2 className="accordion-header">
+                                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse`} aria-expanded="true" aria-controls={`collapse`}>
+                                        <h2 className=''>test</h2>
+                                    </button>
+                                </h2>
+                                <div id={`collapse`} className="accordion-collapse collapse" aria-labelledby={`heading`} data-bs-parent="#accordionItems">
+                                    <div className="accordion-body">
+                                        test
+                                    </div>
+                                </div>
+                            </div> */}
+                        </div>
 
 
                         <p>Did these tips not cover what you were looking for? Let us know and we'll be happy to add more modules.</p>
@@ -198,7 +236,7 @@ export default function ActionItems(props){
                         <h2 className=''>3. Get Human Help</h2>
                     </button>
                 </h2>
-                <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionItems">
+                <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionItem3">
                     <div className="accordion-body">
                         <p>If you haven't talked to both your loved one's primary care provider about your concerns, we highly encourage you to do that so you can have the full support of your health care team. If you don't have a medical power of attorney set up, you likely wont have full access to their healthcare information but you can call the provider with your loved one. You should also talk to your own provider about being a caregiver so you can get the support for your own health, whether its counseling or care for your own health conditions. Sometimes it can take a little bit before you can get in to see your provider so reach out as soon as possible. Getting the right diagnosis can really open up a lot of resources for your loved one.</p>
                         <p>If you are needing to talk to a human who is familiar with dementia, the Alzheimer's Association is a good FREE resource. They have a 24/7 support helpline you can call day or night. 800-272-3900</p>
@@ -212,7 +250,7 @@ export default function ActionItems(props){
                         <h2 className=''>4. When to Retest</h2>
                     </button>
                 </h2>
-                <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionItems">
+                <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionItem4">
                     <div className="accordion-body">
                         <p>Based on your score, you should take the HABC questionnaire again in {twoWeeks ? '2 weeks' : '3 months'} ({retestDate})</p>
                         {/* <p>If you want an email reminder to retest on DATE please check this box.</p> */}
