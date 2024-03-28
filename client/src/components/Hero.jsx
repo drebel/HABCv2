@@ -9,7 +9,7 @@ export default function Hero(){
             <p className="lead">Track the progression of dementia symptoms and measure caregiver burnout so you can get help as soon as possible</p>
             <p>Just like how you'd monitor blood pressure and seek help if it got too high</p>
             <div className="d-grid gap-2 d-sm-flex justify-content-sm-center mb-5">
-                <Link to="/habc" className="btn btn-primary btn-lg px-4 me-sm-3">Get Started</Link>
+                <Link to="habc" className="btn btn-primary btn-lg px-4 me-sm-3">Get Started</Link>
                 <a href='https://www.ncbi.nlm.nih.gov/pmc/articles/PMC3393358/' target='_blank' rel='noreferrer' className="btn btn-outline-secondary btn-lg px-4">Read the research</a>
             </div>
         </div>
