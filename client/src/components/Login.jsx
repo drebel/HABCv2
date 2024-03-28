@@ -1,5 +1,5 @@
 import React from 'react'
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth'
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom';
 
 
@@ -29,10 +29,12 @@ export default function Login(props){
         try{
             const userCredential = await signInWithEmailAndPassword(auth, formData.email, formData.password)
             const user = userCredential.user;
-            console.log('user has signed in',user)
+            // console.log('user has signed in',user)
             if(localStorage.getItem('guestScore')){
                 props.addGuestScore(user)
+                // console.log('about to navigate')
                 navigate('/dashboard')
+                // console.log('toggle login modal')
                 props.toggleShowLogin()
 
             }else{

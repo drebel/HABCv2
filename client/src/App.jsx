@@ -1,19 +1,51 @@
 import { useState, useEffect } from 'react'
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
+import { 
+  BrowserRouter as Router,
+  Routes,
+  RouterProvider,
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+ } from 'react-router-dom'
 
-import Navigation from './components/Navigation'
 import AuthRequired from './components/AuthRequired'
 
+import { Layout, loader as authLoader } from './components/Layout'
 import HabcContainer from './pages/HabcContainer'
 import LandingPage from './pages/LandingPage'
 import DashboardPage from './pages/DashboardPage'
 import Testing from './pages/Testing'
+import NotFound from './pages/NotFound';
 
 import './App.css'
 
 
-
+// const router = createBrowserRouter(createRoutesFromElements(
+//   <Route element={<Layout 
+//     userAuth={userAuth}
+//     showLogin={showLogin}
+//     toggleShowLogin={toggleShowLogin}
+//     showSignup={showSignup}
+//     toggleShowSignup={toggleShowSignup}/>
+//     }
+//   >
+//     <Route path='/' element={<LandingPage />}/>
+//     <Route path='habc' element={<HabcContainer 
+//       showLogin={showLogin}
+//       toggleShowLogin={toggleShowLogin}
+//       showSignup={showSignup}
+//       toggleShowSignup={toggleShowSignup}
+//     />}/>
+//     <Route element={<AuthRequired userAuth={userAuth}/>}>
+//       <Route path='dashboard' element={<DashboardPage 
+//         userAuth={userAuth}
+//       />}/>
+//     </Route>
+//     <Route path='testing' element={<Testing />}/>
+//     <Route path='*' element={<NotFound />} />
+//   </Route>
+// ))
 
 function App() {
 
@@ -41,32 +73,36 @@ function App() {
 
   return (
     <>
+      {/* <RouterProvider router={router} /> */}
       <Router>
-        <Navigation 
-          userAuth={userAuth}
-          showLogin={showLogin}
-          toggleShowLogin={toggleShowLogin}
-          showSignup={showSignup}
-          toggleShowSignup={toggleShowSignup}
-        />
         <Routes>
-          <Route path='/' element={<LandingPage />}/>
-          <Route path='/habc' element={<HabcContainer 
+          <Route element={<Layout 
+            auth={auth}
+            userAuth={userAuth}
             showLogin={showLogin}
             toggleShowLogin={toggleShowLogin}
             showSignup={showSignup}
-            toggleShowSignup={toggleShowSignup}
-          />}/>
-          <Route element={<AuthRequired userAuth={userAuth}/>}>
-            <Route path='/dashboard' element={<DashboardPage 
-              userAuth={userAuth}
+            toggleShowSignup={toggleShowSignup}/>
+          }>
+            <Route path='/' element={<LandingPage />}/>
+            <Route path='habc' element={<HabcContainer 
+              showLogin={showLogin}
+              toggleShowLogin={toggleShowLogin}
+              showSignup={showSignup}
+              toggleShowSignup={toggleShowSignup}
             />}/>
+            <Route element={<AuthRequired userAuth={userAuth}/>}>
+              <Route path='dashboard' element={<DashboardPage 
+                userAuth={userAuth}
+              />}/>
+            </Route>
+            <Route path='testing' element={<Testing />}/>
+            <Route path='*' element={<NotFound />} />
           </Route>
-          <Route path='/testing' element={<Testing />}/>
         </Routes>
       </Router>
     </>
   )
 }
-
 export default App
+
