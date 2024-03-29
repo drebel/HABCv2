@@ -8,6 +8,8 @@ import Results from '../components/Results'
 import Login from '../components/Login'
 import Signup from '../components/Signup'
 
+import updateScore from '../../utils/updateScore'
+
 export default function HabcContainer(props){
 
     const auth = getAuth()
@@ -50,7 +52,6 @@ export default function HabcContainer(props){
                 [name]:Number(value)
             }
         })
-        console.log(formData)
     }
 
 
@@ -99,21 +100,40 @@ export default function HabcContainer(props){
                 calculatedMetrics: calculatedMetrics,
             }
 
-            await axios.post('http://localhost:5000/score', newDocValues)
+            const response = await axios.post('http://localhost:5000/score', newDocValues)
+            return response.data
         }catch(error){
             console.error(error)
         }
-
-
     }
-
 
     async function handleSubmit(e){
         e.preventDefault()
         if(user){
             try{
-                await addResult()
+                const response = await axios.get(`http://localhost:5000/score?uid=${user.uid}`)
+                
+                if(response.data.length > 0){
+                    const recentScore = response.data[response.data.length - 1]
+
+                    const recentDate = new Date (recentScore.createdAt)
+                    const formattedRecentDate = `${recentDate.getMonth() + 1}/${recentDate.getDate()}/${recentDate.getFullYear() % 100}`
+                    
+                    const today = new Date()
+                    const formattedToday = `${today.getMonth() + 1}/${today.getDate()}/${today.getFullYear() % 100}`
+                    
+                    if (formattedRecentDate === formattedToday) {
+                        const confirmed = window.confirm(`You have already submitted a response today (${formattedToday}). Do you want to replace the previous response with this one?`);
+                        if (confirmed) {
+                            console.log(recentScore._id)
+                            updateScore(recentScore._id, user, formData, calculatedMetrics)
+                        }
+                    }
+                }else{
+                    await addResult()
+                }
                 navigate('/dashboard')
+
             }catch(error){
                 console.error(error)
             }
