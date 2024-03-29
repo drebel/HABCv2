@@ -19,7 +19,7 @@ export default function FeatureWithIcons(){
                             <div className="col d-flex flex-column gap-2">
                                 <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                                     <svg className="bi" width="1em" height="1em">
-                                        <use xlink:href="#collection" />
+                                        {/* <use xlink:href="#collection" /> */}
                                     </svg>
                                 </div>
                                 <h4 className="fw-semibold mb-0 text-body-emphasis">Cognition</h4>
@@ -29,7 +29,7 @@ export default function FeatureWithIcons(){
                             <div className="col d-flex flex-column gap-2">
                                 <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                                     <svg className="bi" width="1em" height="1em">
-                                    <use xlink:href="#gear-fill" />
+                                    {/* <use xlink:href="#gear-fill" /> */}
                                     </svg>
                                 </div>
                                 <h4 className="fw-semibold mb-0 text-body-emphasis">Physical Function</h4>
@@ -39,7 +39,7 @@ export default function FeatureWithIcons(){
                             <div className="col d-flex flex-column gap-2">
                                 <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                                     <svg className="bi" width="1em" height="1em">
-                                    <use xlink:href="#speedometer" />
+                                    {/* <use xlink:href="#speedometer" /> */}
                                     </svg>
                                 </div>
                                 <h4 className="fw-semibold mb-0 text-body-emphasis">Behavior and Mood</h4>
@@ -49,7 +49,7 @@ export default function FeatureWithIcons(){
                             <div className="col d-flex flex-column gap-2">
                                 <div className="feature-icon-small d-inline-flex align-items-center justify-content-center text-bg-primary bg-gradient fs-4 rounded-3">
                                     <svg className="bi" width="1em" height="1em">
-                                    <use xlink:href="#table" />
+                                    {/* <use xlink:href="#table" /> */}
                                     </svg>
                                 </div>
                                 <h4 className="fw-semibold mb-0 text-body-emphasis">Caregiver Stress</h4>
