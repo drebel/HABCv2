@@ -65,11 +65,13 @@ export default function ActionItems(props){
                 <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionItem1">
                     <div className="accordion-body">
                         <div className="row">
+                            <h3>Total Score</h3>
+                            <h5>Ideal: Total score less than 14 or 50% reduction over 12 months</h5>
                             {
-                                props.recentScore.calculatedMetrics.totalScore > 14 ?
-                                <p className="col-12">Your total score is over 14 which may indicate you are at higher risk for burnout due to increased dementia symptoms. The ultimate goal is to get your total score below 15 or reduced by 50% in 12 months.</p>
+                                props.recentScore.calculatedMetrics.totalScore > 13 ?
+                                <p className="col-12">Your total score is 14 or greater which may indicate you are at higher risk for burnout due to increased dementia symptoms. The ultimate goal is to get your total score below 14 or reduced by 50% in 12 months.</p>
                                 :
-                                <p className="col-12">Your total score is under 15 which is meeting the goal of 14 or less! Since dementia is a progressive contidion, this score may change in the future. If this score goes up it does not mean you are doing a bad job, it just means your loved one's needs are changing and we need to change how we are providing care to them.</p>
+                                <p className="col-12">Your total score is under 14 which is meeting the goal of 14 or less! Since dementia is a progressive contidion, this score may change in the future. If this score goes up it does not mean you are doing a bad job, it just means your loved one's needs are changing and we need to change how we are providing care to them.</p>
                             }
                             {/* <table className="col-12 col-md-4 px-2">
                                 <tr>
@@ -91,9 +93,11 @@ export default function ActionItems(props){
                             </table> */}
                         </div>
                         <div className="row">
+                            <h3>Cognitive</h3>
+                            <h5>Cutoff: Scores of 5 or greater may indicte the need for more assessment for mild cognitive impairment</h5>
                             {
                                 props.recentScore.calculatedMetrics.cognitiveScore > 4 ?
-                                <p>Your cognitive subscore is greater than 4 which indicates possible mild cognitive impairment. This warrents follow up with your loved one's healthcare provider for furhter clinical examination. The cognitive score is a helpful for screening for if their thinking is currently altered. The cognitive score can help you track how their thinking changes over time and how they respond to different medications and non-pharmacological treatments.</p>
+                                <p>Your cognitive subscore is 5 or greater which indicates possible mild cognitive impairment. This warrents follow up with your loved one's healthcare provider for furhter clinical examination. The cognitive score is a helpful for screening for if their thinking is currently altered. The cognitive score can help you track how their thinking changes over time and how they respond to different medications and non-pharmacological treatments.</p>
                                 :
                                 <p>The cognitive score is useful for screening for mild cogntive impairment. Your cognitive score is under 5 which does not meet the threshold to require further medical screening. However, if you are concerned about your loved one's thinking, don't let this score stop you from reaching out to your health care provider to talk what you are seeing. Dementia is a progressive contidion so this score may change in the future. If this score goes up it does not mean you are doing a bad job, it just means your loved one's needs are changing and we need to change how we are supporting them.</p>
                             }
@@ -117,6 +121,7 @@ export default function ActionItems(props){
                             </table> */}
                         </div>
                         <div className="row">
+                            <h3>Functional</h3>
                             <p>The functional score is not used a screening tool like the cognitive score but it is still helpful at monitoring your loved one's functional changes over time and their response to different treatments.</p>
                             {/* <table className="col-12 col-md-4 px-2">
                                 <tr>
@@ -138,9 +143,11 @@ export default function ActionItems(props){
                             </table> */}
                         </div>
                         <div className="row">
+                            <h3>Behavior and Mood</h3>
+                            <h5>Ideal: Subscore less than 2 or 50% reduction over 12 months</h5>
                             {
                                 props.recentScore.calculatedMetrics.behaviorScore > 1 ?
-                                <p>Your behavior and mood score is over 1 which may indicate you are at higher risk for burnout because increased dementia behaviors is one of the major factors contributing to caregiver burnout. The ultimate goal is to get your behavior score below 2 or reduced by 50% in 12 months. The good news is there are many effective non-pharamacological treatments to help with dementia behaviors depending on what your loved one is experiencing. There are also medications that can be used but those are typically only used in specific situations because of the potential side effects. You should talk with your loved one's healthcare provider to figure out what treatments would be best for your situation. This might include a referral to a geropsych physician, arranging for additional caregiving support at home, exploring medication options, or seeking counseling to develop effective strategies to understand and change these behaviors. Tracking this score is very helpful to see which treatments are helping over time.</p>
+                                <p>Your behavior and mood score is 2 or more which may indicate you are at higher risk for burnout because increased dementia behaviors is one of the major factors contributing to caregiver burnout. The ultimate goal is to get your behavior score below 2 or reduced by 50% in 12 months. The good news is there are many effective non-pharamacological treatments to help with dementia behaviors depending on what your loved one is experiencing. There are also medications that can be used but those are typically only used in specific situations because of the potential side effects. You should talk with your loved one's healthcare provider to figure out what treatments would be best for your situation. This might include a referral to a geropsych physician, arranging for additional caregiving support at home, exploring medication options, or seeking counseling to develop effective strategies to understand and change these behaviors. Tracking this score is very helpful to see which treatments are helping over time.</p>
                                 :
                                 <p>Your behavior and mood score is under 2 which is meeting the goal of 1 or less! Since dementia is a progressive contition this score may change in the future. Changes in the score doesn't mean you are doing a bad job, just that we need to change the way we are supporting your loved one. Don't let this score stop you from sharing what you are experiencing or asking for help from friends, family, or healthcare providers.</p>
                             }
@@ -164,10 +171,12 @@ export default function ActionItems(props){
                             </table> */}
                         </div>
                         <div className="row">
+                            <h3>Caregiver Stress</h3>
+                            <h5>Ideal: Subscore less than 1 or 50% reduction over 12 months</h5>
                             {
                                 props.recentScore.calculatedMetrics.caregiverScore > 0
                                 ?
-                                <p>Your caregiver stress score is over 0 which may indicate you are at a higher risk for burnout because increased caregiver stress is another major factor contributing to burnout. The ultimate goal to get it below 1 or reduced by 50% in 12 months. This score may the most important to track so you can see how your own stress changes over time and with different treatments for you and your loved one. Taking care of yourself is one of the most important things you can do as a caregiver. You can't for someone else at your fullest with an empty tank, but we know that is easier said than done.</p>
+                                <p>Your caregiver stress score is 1 or more which may indicate you are at a higher risk for burnout because increased caregiver stress is another major factor contributing to burnout. The ultimate goal to get it below 1 or reduced by 50% in 12 months. This score may the most important to track so you can see how your own stress changes over time and with different treatments for you and your loved one. Taking care of yourself is one of the most important things you can do as a caregiver. You can't for someone else at your fullest with an empty tank, but we know that is easier said than done.</p>
                                 :
                                 <p>Your caregiver stress score is 0 which is inline with the ultimate goal of below 1! This might change in the future but doesn't mean you are doing a bad job. Tracking this score is important so so you can see how your own stress changes with different treatments for you and your loved one and over time.</p>
                             }
@@ -201,32 +210,31 @@ export default function ActionItems(props){
                 </h2>
                 <div id="collapseTwo" className="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionItem2">
                     <div className="accordion-body">
-                        <p>Here are a few education modules for you based on your responses:</p>
-                        <ul>
+                        {/* These are education tips developed and shared for free by the HABC team at the UofI. based on your responses these tips are the most likely to be relevant to you
+
+                        We have over 20 tips but most are around dementia behviors. Based on your responses none of them aligned with your current situtation. If there are things you were hoping wed adddress please send us a message and we would be happy to create a new module for you.  */}
+                        <h3>Based on your responses, here are a few education modules:</h3>
+                        <p>These educational tips are from the HABC program at the Indiana University.</p>
+                        {/* <ul>
                             {props.tips.map((item,index) => {
                                 return <li key={`tip${index}`}>{item.title}</li>
                             })}
-                        </ul>
+                        </ul> */}
 
                         <div className="accordion" id="accordionItemsTips">
-                            {accordionTipElements}
-                            {/* <div className="accordion-item">
-                                <h2 className="accordion-header">
-                                    <button className="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target={`#collapse`} aria-expanded="true" aria-controls={`collapse`}>
-                                        <h2 className=''>test</h2>
-                                    </button>
-                                </h2>
-                                <div id={`collapse`} className="accordion-collapse collapse" aria-labelledby={`heading`} data-bs-parent="#accordionItems">
-                                    <div className="accordion-body">
-                                        test
-                                    </div>
-                                </div>
-                            </div> */}
+                            {
+                                accordionTipElements.length > 0 
+                                ?
+                                accordionTipElements
+                                :
+                                <p>We have nearly 30 modules but most are about dealing with dementia behaviors. Your responses don't have any tips associated with them yet so we don't have any personalized tips for you...YET! </p>
+                            }
+                            {/* {accordionTipElements} */}
                         </div>
-
-
-                        <p>Did these tips not cover what you were looking for? Let us know and we'll be happy to add more modules.</p>
+                        <div className='py-3'>
+                        <h5>If theres a topic you would like more tips on let us know and we'll be happy to add more modules.</h5>
                         <a href="https://docs.google.com/forms/d/e/1FAIpQLSf9y6XL0VwfaWXhWERPpqpo4kE-E2bqsblW8Owp9qMtp9TKcw/viewform" rel="noreferrer" target="_blank">Submit Feedback Here!</a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -238,9 +246,17 @@ export default function ActionItems(props){
                 </h2>
                 <div id="collapseThree" className="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionItem3">
                     <div className="accordion-body">
-                        <p>If you haven't talked to both your loved one's primary care provider about your concerns, we highly encourage you to do that so you can have the full support of your health care team. If you don't have a medical power of attorney set up, you likely wont have full access to their healthcare information but you can call the provider with your loved one. You should also talk to your own provider about being a caregiver so you can get the support for your own health, whether its counseling or care for your own health conditions. Sometimes it can take a little bit before you can get in to see your provider so reach out as soon as possible. Getting the right diagnosis can really open up a lot of resources for your loved one.</p>
-                        <p>If you are needing to talk to a human who is familiar with dementia, the Alzheimer's Association is a good FREE resource. They have a 24/7 support helpline you can call day or night. 800-272-3900</p>
-                        <p>If you have friends or family, reach out to them too and let them know whats going on. Taking care of a loved one truly takes a village. Getting more people involved sooner is feedback we hear from many caregivers.</p>
+                        <h3>Who can I talk to?</h3>
+                        <h5>Your Loved One's health care provider</h5>
+                        <p>If you haven't talked to both your loved one's primary care provider about your concerns, we highly encourage you to do that so you can have the full support of your health care team. If you don't have a medical power of attorney set up, you likely wont have full access to their healthcare information but you can call the provider with your loved one. Sometimes it can take a little bit before you can get in to see your provider so reach out as soon as possible. Getting the right diagnosis can really open up a lot of resources for your loved one.</p>
+                        <h5>Your health care provider</h5>
+                        <p>You should also talk to your own provider about being a caregiver so you can get the support for your own health, whether its counseling or care for your own mental and physical health.</p>
+                        <h5>24/7 Free Helpline </h5>
+                        {/* <p className='fw-bold'>800-272-3900</p> */}
+                        <p>If you are needing to talk to a human who is familiar with dementia, the Alzheimer's Association is a good free resource. They have a 24/7 support helpline you can call day or night.</p> 
+                        <p className='fw-bold'>800-272-3900</p>
+                        <h5>Friends and Family</h5>
+                        <p>If you have friends or family, reach out to them too and let them know whats going on. Taking care of a loved one truly takes a village. Getting more people involved sooner is something we've heard from many caregivers.</p>
                     </div>
                 </div>
             </div>
@@ -252,10 +268,11 @@ export default function ActionItems(props){
                 </h2>
                 <div id="collapseFour" className="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionItem4">
                     <div className="accordion-body">
-                        <p>Based on your score, you should take the HABC questionnaire again in {twoWeeks ? '2 weeks' : '3 months'} ({retestDate})</p>
+                        <h3>Retest Date: {retestDate}</h3>
+                        <p>Based on your score, you should take the HABC questionnaire again in {twoWeeks ? '2 weeks' : '3 months'}</p>
                         {/* <p>If you want an email reminder to retest on DATE please check this box.</p> */}
-                        <p>During these {twoWeeks ? '2 weeks' : '3 months'}, try out some of the tips you read in the education modules, talk to healthcare experts to get professional advice, and let family and friends know what is going on.</p>
-                        <p>When you retest in {twoWeeks ? '2 weeks' : '3 months'} you will be able to see what is working and what isn't.</p>
+                        <p>During these {twoWeeks ? '2 weeks' : '3 months'}, try out some of the tips you read in the education modules, set up appointments with healthcare providers, and let family and friends know what is going on - the good and the bad.</p>
+                        <p>When you retest in {twoWeeks ? '2 weeks' : '3 months'} you will be able to see how your scores change and reflect on what things are working and what might need to change.</p>
                     </div>
                 </div>
             </div>
