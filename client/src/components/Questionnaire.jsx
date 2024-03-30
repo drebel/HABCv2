@@ -18,6 +18,45 @@ export default function Questionnaire(props){
             handleChange={props.handleChange}
         />
     ))
+    const cognitiveElements = questions.filter( q => q.subscale === 'Cognitive').map(q => (
+        <Question 
+            questionKey={q.id}
+            name={`q${q.id}`}
+            question={q.question}
+            formData={props.formData}
+            handleChange={props.handleChange}
+        />
+    ))
+
+    const functionalElements = questions.filter( q => q.subscale === 'Functional').map(q => (
+        <Question 
+            questionKey={q.id}
+            name={`q${q.id}`}
+            question={q.question}
+            formData={props.formData}
+            handleChange={props.handleChange}
+        />
+    ))
+
+    const behaviorElements = questions.filter( q => q.subscale === 'Behavioral/Mood').map(q => (
+        <Question 
+            questionKey={q.id}
+            name={`q${q.id}`}
+            question={q.question}
+            formData={props.formData}
+            handleChange={props.handleChange}
+        />
+    ))
+
+    const caregiverElements = questions.filter( q => q.subscale === 'Caregiver Stress').map(q => (
+        <Question 
+            questionKey={q.id}
+            name={`q${q.id}`}
+            question={q.question}
+            formData={props.formData}
+            handleChange={props.handleChange}
+        />
+    ))
 
     return(
         <>
@@ -45,7 +84,7 @@ export default function Questionnaire(props){
                                                 <li>In general, whatever the term means to you is a reasonable and acceptable definition.</li>
                                             </ul>    
                                         </li> 
-                                        <li className='py-2'>A "problem" occurs only when your loved one has difficulty with the symptom AND either you or your loved one are distressed by that. For example:
+                                        <li className='py-2'>*A "problem" occurs only when your loved one has difficulty with the symptom <strong>AND either you or your loved one are distressed by that</strong>. For example:
                                             
                                             <ul>
                                                 <li className='py-2'>Suppose your loved one is unable to do household chores, but you have hired someone to do the housework AND both you and your loved one are comfortable with that arrangement. In this case, your loved one's inability to do household chores <strong>would not be considered a problem.</strong></li>
@@ -60,17 +99,40 @@ export default function Questionnaire(props){
                     </div>
                 </div>
             </div>
-            <h2 className=''>Over the past <strong>two weeks</strong> how often did <strong>your loved one</strong> have problems with:</h2>
+            {/* <h2 className=''>Over the past <strong>two weeks</strong> how often did <strong>your loved one</strong> have problems* with:</h2> */}
 
 
             <form onSubmit={props.handleSubmit}>
+                <h2 className=''>Over the past <strong>two weeks</strong> how often did <strong>your loved one</strong> have problems* with:</h2>
+                <div className='rounded p-3 bg-danger-subtle mb-3'>
+                    {cognitiveElements}
+                </div>
+                <div className='rounded p-3 bg-warning-subtle mb-3'>
+                    {functionalElements}
+                </div>
+                <div className='rounded p-3 bg-success-subtle mb-3'>
+                    {behaviorElements}
+                </div>
+                <h2 className='mt-3'>Over the past <strong>two weeks</strong> how often did <strong>you</strong> have problems* with:</h2>
+                <div className='rounded p-3 bg-info-subtle mb-3'>
+                    {caregiverElements}
+                </div>
+                <div className='d-flex justify-content-center my-5'>
+                    <button className='btn btn-outline-secondary btn-lg px-3 mx-3' onClick={props.handleClearForm}>Reset</button>
+                    <button className='btn btn-primary btn-lg px-3 mx-3'>Submit</button>
+                </div>
+                
+
+
+
+                {/* <h2 className='mt-3'>Over the past <strong>two weeks</strong> how often did <strong>you</strong> have problems with:</h2>
                 {questionElements.slice(0,-4)}
                 <h2 className='mt-3'>Over the past <strong>two weeks</strong> how often did <strong>you</strong> have problems with:</h2>
                 {questionElements.slice(-4)}
                 <div className='d-flex justify-content-center my-5'>
                     <button className='btn btn-outline-secondary btn-lg px-3 mx-3' onClick={props.handleClearForm}>Reset</button>
                     <button className='btn btn-primary btn-lg px-3 mx-3'>Submit</button>
-                </div>
+                </div> */}
 
             </form>
         </>
