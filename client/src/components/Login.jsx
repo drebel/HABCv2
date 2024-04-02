@@ -107,7 +107,7 @@ export default function Login(props){
                                     <label htmlFor="floatingPassword">Password</label>
                                 </div>
                                 <button className="w-100 mb-2 btn btn-lg rounded-3 btn-primary" onClick={handleLogin}>Log in</button>
-                                <button className="w-100 mb-2 btn btn-lg rounded-3 btn-outline-primary" onClick={handlePasswordReset}>Reset Password</button>
+                                {/* <button className="w-100 mb-2 btn btn-lg rounded-3 btn-outline-primary" onClick={handlePasswordReset}>Reset Password</button> */}
                             </form>
                         </div>
                     </div>

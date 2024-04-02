@@ -8,16 +8,16 @@ import Question from './Question'
 
 export default function Questionnaire(props){   
 
-    const questionElements = questions.map((q, qIndex) => (
-        // eslint-disable-next-line react/jsx-key
-        <Question 
-            questionKey={qIndex}
-            name={`q${qIndex+1}`}
-            question={q.question}
-            formData={props.formData}
-            handleChange={props.handleChange}
-        />
-    ))
+    // const questionElements = questions.map((q, qIndex) => (
+    //     // eslint-disable-next-line react/jsx-key
+    //     <Question 
+    //         questionKey={qIndex}
+    //         name={`q${qIndex+1}`}
+    //         question={q.question}
+    //         formData={props.formData}
+    //         handleChange={props.handleChange}
+    //     />
+    // ))
     const cognitiveElements = questions.filter( q => q.subscale === 'Cognitive').map(q => (
         <Question 
             questionKey={q.id}
@@ -62,6 +62,7 @@ export default function Questionnaire(props){
         <>
             <h2 className='text-center display-5 fw-bold'>Healthy Aging Brain Care Monitor</h2>
             <div className='text-center'>Estimated time: 6 minutes</div>
+            <p className='text-center fw-bold'>Please note this tool is intended as a self-monitoring tool, not as a replacement for a professional clinical evaluation</p>
             <div className='py-2 bg-white my-3'>
                 <div className='mb-2'>
                     <div className="accordion" id="accordionExample">

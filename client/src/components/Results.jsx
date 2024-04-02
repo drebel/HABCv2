@@ -13,10 +13,10 @@ import eduModules from '../assets/eduModules'
 
 export default function Results(props){
 
-    React.useEffect( () => {
-        console.log('results component mounting.')
-        return () => console.log('results component unmounting.')
-    },[])
+    // React.useEffect( () => {
+    //     console.log('results component mounting.')
+    //     return () => console.log('results component unmounting.')
+    // },[])
 
     // async function getResults(){
     //     const auth = getAuth()
