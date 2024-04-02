@@ -84,3 +84,15 @@ ol li {
 /* ol > li {
   font-weight: 600;
 } */
+
+/* Remove the blue background color when the accordion item is open */
+/* .accordion-button:not(.collapsed) {
+  background-color: transparent !important;
+  color: inherit;
+} */
+
+/* Remove the blue border when the accordion button is focused */
+button.accordion-button:focus {
+  box-shadow: none;
+  outline: none;
+}
