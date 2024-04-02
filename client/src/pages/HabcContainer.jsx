@@ -33,10 +33,22 @@ export default function HabcContainer(props){
 
 
     const [showQuestionnaire, setShowQuestionnaire] = React.useState(true)
+    const resultsRef = React.useRef(null)
 
     function toggleQuestionnaire(){
         setShowQuestionnaire(prevShowQuestionnaire => !prevShowQuestionnaire)
     }
+
+    React.useEffect(() => {
+        if(!showQuestionnaire){
+            if(resultsRef.current){
+                console.log('about to scroll')
+                resultsRef.current.parentElement.scrollIntoView({ behavior: 'smooth' });
+            }
+        }else{
+            window.scrollTo(0,0)
+        }
+    }, [showQuestionnaire])
 
     function handleClearForm(e){
         e.preventDefault()
@@ -156,16 +168,16 @@ export default function HabcContainer(props){
                         handleSubmit={handleSubmit}
                         handleClearForm={handleClearForm} 
                         />
-                    <br />
-
                 </>
             ) : (
                 <>
-                    <div className='text-center'>
+                    <div ref={resultsRef}>
                         <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
+                    </div>
+                    <div className='text-center'>
                         <br />
                         <button className='btn btn-outline-primary' onClick={toggleQuestionnaire}>Return to Quetionnaire</button>
-                        <div>
+                        <div className='m-4'>
                             <h4>Your data isnt saved!</h4>
                             <h5>Log in or sign up to save your score</h5>
                             <button type="button" className="btn btn-outline-primary me-2" onClick={props.toggleShowLogin}>Login</button>

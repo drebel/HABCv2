@@ -50,8 +50,8 @@ export default function DashboardPage(props){
 
     React.useEffect(() => {
         if (!recentScore || !recentScore.rawScores) {
-            console.log("Recent score data is not available yet.")
-            console.log(recentScore,recentScore.rawScores)
+            // console.log("Recent score data is not available yet.")
+            // console.log(recentScore,recentScore.rawScores)
             return
         }
 
@@ -104,22 +104,22 @@ export default function DashboardPage(props){
 
     //Add a inital datapoint of 0 so you can see a line if theres only one user score saved
     // if(xValues.length == 1){
-    //     const date = new Date (scoresArray[0].createdAt)
-    //     date.setDate(date.getDate() - 1)
-    //     const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
-    //     xValues.unshift(formattedDate)
+        const date = new Date (scoresArray[0].createdAt)
+        date.setDate(date.getDate() - 1)
+        const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
+        xValues.unshift(formattedDate)
 
-    //     docIds.unshift(0)
-    //     totalScoreY.unshift(0)
-    //     cognitiveScoreY.unshift(0)
-    //     functionalScoreY.unshift(0)
-    //     behaviorScoreY.unshift(0)
-    //     caregiverScoreY.unshift(0)
+        docIds.unshift(0)
+        totalScoreY.unshift(0)
+        cognitiveScoreY.unshift(0)
+        functionalScoreY.unshift(0)
+        behaviorScoreY.unshift(0)
+        caregiverScoreY.unshift(0)
     // }
 
     function test(e){
         e.preventDefault(e)
-        console.log(tips)
+        console.log(recentScore)
     }
 
     function showScores(e){
@@ -156,25 +156,26 @@ export default function DashboardPage(props){
 
     return (
         <>
-            <LongChart 
-                xValues={xValues}
-                totalScoreY={totalScoreY}
-                cognitiveScoreY={cognitiveScoreY}
-                functionalScoreY={functionalScoreY}
-                behaviorScoreY={behaviorScoreY}
-                caregiverScoreY={caregiverScoreY}
-                totalScoreCutoff={totalScoreCutoff}
-                behaviorScoreCutoff={behaviorScoreCutoff}
-                caregiverScoreCutoff={caregiverScoreCutoff}
-            />
-            <button onClick={showScores}>Show Scores</button>
-            <button onClick={test}>test</button>
-            <RecentScore recentScore={recentScore}/>
-            <ActionItems
-                recentScore={recentScore}
-                tips={tips}
-                />
+            <section className='container pb-5'>
+                {/* <button onClick={test}>test</button> */}
+                <LongChart 
+                    xValues={xValues}
+                    totalScoreY={totalScoreY}
+                    cognitiveScoreY={cognitiveScoreY}
+                    functionalScoreY={functionalScoreY}
+                    behaviorScoreY={behaviorScoreY}
+                    caregiverScoreY={caregiverScoreY}
+                    totalScoreCutoff={totalScoreCutoff}
+                    behaviorScoreCutoff={behaviorScoreCutoff}
+                    caregiverScoreCutoff={caregiverScoreCutoff}
+                    />
+                <RecentScore calculatedMetrics={recentScore.calculatedMetrics}/>
+                <ActionItems
+                    recentScore={recentScore}
+                    tips={tips}
+                    />
 
+            </section>
         </>
     )
 }

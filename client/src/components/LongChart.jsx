@@ -3,6 +3,11 @@ import Plot from 'react-plotly.js'
 
 export default function LongChart(props){
 
+    // React.useEffect( () => {
+    //     console.log('longchart component mounting.')
+    //     return () => console.log('longchart component unmounting.')
+    // },[])
+
     const data = [
         {
             x: props.xValues,
@@ -21,38 +26,47 @@ export default function LongChart(props){
             marker: { color: 'black' },
             name: 'Total Score',
             // legendgroup: 'total', 
+            line:{ shape: 'spline', smoothing: 1}
         },
         {
             x: props.xValues,
             y: props.cognitiveScoreY,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: 'red' },
+            marker: { color: '#dc3545' },
             name: 'Cognitive Subscore', 
+            line:{ shape: 'spline', smoothing: 1}
+
         },
         {
             x: props.xValues,
             y: props.functionalScoreY,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: 'orange' },
+            marker: { color: '#ffc107' },
             name: 'Functional Subscore', 
+            line:{ shape: 'spline', smoothing: 1}
+
         },
         {
             x: props.xValues,
             y: props.behaviorScoreY,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: 'green' },
+            marker: { color: '#198754' },
             name: 'Behavior Subscore', 
+            line:{ shape: 'spline', smoothing: 1}
+
         },
         {
             x: props.xValues,
             y: props.caregiverScoreY,
             type: 'scatter',
             mode: 'lines+markers',
-            marker: { color: 'blue' },
+            marker: { color: '#0dcaf0' },
             name: 'Caregiver Stress Subscore',
+            line:{ shape: 'spline', smoothing: 1}
+
         },
         // {
         //     x: props.xValues,
@@ -78,16 +92,25 @@ export default function LongChart(props){
         dragmode:'pan',
         autosize: true,
         aspectratio: { x: 1, y: 2 },
-        legend: {"orientation": "h"},
+        legend: {
+            "orientation": "h",
+            bordercolor: '#212529',
+            borderwidth:1,
+            font:{
+                size: 14,
+                color: '#212529'
+            },
+            tracegroupgap: 1,
+        },
         yaxis: {fixedrange:true},
         //     range: [0, 93] }, 
-        paper_bgcolor: '#edfbf7',
+        paper_bgcolor: '#ffffff',
         plot_bgcolor: '#ffffff',
         margin: {
             l: 20,
             r: 20,
-            b: 100,
-            t: 40,
+            b: 20,
+            t: 20,
             pad: 0
           },
     }

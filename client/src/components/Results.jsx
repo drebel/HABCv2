@@ -4,8 +4,19 @@ import {collection, getDocs, where, query} from 'firebase/firestore'
 import {getAuth} from 'firebase/auth'
 
 import Chart from './Chart'
+import RecentScore from './RecentScore'
+import ActionItems from './ActionItems'
+import LongChart from './LongChart'
+
+import questionToModules from '../assets/questionToModules'
+import eduModules from '../assets/eduModules'
 
 export default function Results(props){
+
+    React.useEffect( () => {
+        console.log('results component mounting.')
+        return () => console.log('results component unmounting.')
+    },[])
 
     // async function getResults(){
     //     const auth = getAuth()
@@ -27,58 +38,88 @@ export default function Results(props){
     //     getResults()
     // },[])
 
+    const newScore = {
+        createdAt: new Date(),
+        calculatedMetrics: props.calculatedMetrics,
+        rawScores: props.formData
+    }
+
+    const rawScores = props.formData
+    const entriesArray = Object.entries(rawScores)
+        .filter(([key,value]) => value > 0)
+        .sort((a,b) => b[1] - a[1])
+    // console.log(entriesArray)
+    const keys = entriesArray.map(element => element[0])
+    // console.log(keys)
+    const unfilteredModuleIds = []
+    for(const q of keys){
+        if(questionToModules[q].length !== 0){
+            unfilteredModuleIds.push(questionToModules[q])
+        }
+    }
+    // console.log(unfilteredModuleIds)
+    const uniqueArray = [...new Set(unfilteredModuleIds.flat())];
+    // console.log(uniqueArray)
+    // returns unique array of education modules based on the users score
+    const modules = uniqueArray.map(e => eduModules[e])
+
+    const xValues = []
+    // const docIds = []
+    const totalScoreCutoff = 14
+    const totalScoreY = []
+    const cognitiveScoreY = []
+    const functionalScoreY = []
+    const behaviorScoreCutoff = 2
+    const behaviorScoreY = []
+    const caregiverScoreCutoff = 1
+    const caregiverScoreY = []
+
+        const date = newScore.createdAt
+        const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
+        xValues.push(formattedDate)
+
+        totalScoreY.push(props.calculatedMetrics.totalScore)
+        cognitiveScoreY.push(props.calculatedMetrics.cognitiveScore)
+        functionalScoreY.push(props.calculatedMetrics.functionalScore)
+        behaviorScoreY.push(props.calculatedMetrics.behaviorScore)
+        caregiverScoreY.push(props.calculatedMetrics.caregiverScore)
+
+        // Add a inital datapoint of 0 so you can see a line if theres only one user score saved
+    if(xValues.length == 1){
+        const date = newScore.createdAt
+        date.setDate(date.getDate() - 1)
+        const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
+        xValues.unshift(formattedDate)
+
+        // docIds.unshift(0)
+        totalScoreY.unshift(0)
+        cognitiveScoreY.unshift(0)
+        functionalScoreY.unshift(0)
+        behaviorScoreY.unshift(0)
+        caregiverScoreY.unshift(0)
+    }
+        
+
     return(
         <>
-            <Chart 
-                calculatedMetrics={props.calculatedMetrics}
+            <LongChart 
+                xValues={xValues}
+                totalScoreY={totalScoreY}
+                cognitiveScoreY={cognitiveScoreY}
+                functionalScoreY={functionalScoreY}
+                behaviorScoreY={behaviorScoreY}
+                caregiverScoreY={caregiverScoreY}
+                totalScoreCutoff={totalScoreCutoff}
+                behaviorScoreCutoff={behaviorScoreCutoff}
+                caregiverScoreCutoff={caregiverScoreCutoff}
+                />            
+            {/* <section style={{ height: '85vh'}}>testing</section> */}
+            <RecentScore calculatedMetrics={props.calculatedMetrics}/>
+            <ActionItems 
+                recentScore={newScore}
+                tips={modules}
             />
-            <table className='mx-auto'>
-                <thead>
-                    <tr>
-                        <th scope='col'></th>
-                        <th scope='col'>Your Score</th>
-                        <th scope='col'>Target</th>
-                    </tr>
-                    <tr>
-                        <th scope='row'>Cognitive Subscore</th>
-                        <td>{props.calculatedMetrics.cognitiveScore}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope='row'>Functional Subscore</th>
-                        <td>{props.calculatedMetrics.functionalScore}</td>
-                        <td></td>
-                    </tr>
-                    <tr>
-                        <th scope='row'>Behavior and Mood Subscore</th>
-                        <td>{props.calculatedMetrics.behaviorScore}</td>
-                        <td>Less than 2 or 50% reduction within 12 months</td>
-                    </tr>
-                    <tr>
-                        <th scope='row'>Caregiver Stress Subscore</th>
-                        <td>{props.calculatedMetrics.caregiverScore}</td>
-                        <td>Less than 1 or 50% reduction within 12 months</td>
-                    </tr>
-                    <tr>
-                        <th scope='row'>Total</th>
-                        <td>{props.calculatedMetrics.totalScore}</td>
-                        <td>Less than 14 or 50% reduction within 12 months</td>
-                    </tr>
-                </thead>
-            </table>
-
-
-            {/* <h2>Total Score: {props.calculatedMetrics.totalScore}</h2>
-            <p>Ideal total score: less than 14 or 50% reduction from baseline score by 12 months</p>
-            <h3>Cognitive Subscore: {props.calculatedMetrics.cognitiveScore}</h3>
-            <h3>Functional Subscore: {props.calculatedMetrics.functionalScore}</h3>
-            <h3>Behavior and Mood Subscore: {props.calculatedMetrics.behaviorScore}</h3>
-            <p>Ideal Behavior and Mood score: less than 2 or 50% reduction from baseline score by 12 months</p>
-            <h3>Caregiver Stress Subscore: {props.calculatedMetrics.caregiverScore}</h3>
-            <p>Ideal Caregiver Stress score: 
-            less than 1 or 50% reduction from baseline score by 12 months</p> */}
-
-            {/* <button onClick={getResults}>console log saved docs by user</button> */}
+            
         </>
     )
 }

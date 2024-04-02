@@ -5,6 +5,11 @@ export default function ActionItems(props){
     const [twoWeeks, setTwoWeeks] = React.useState(true)
     const [retestDate, setRetestDate] = React.useState()
 
+    // React.useEffect( () => {
+    //     console.log('actionitems component mounting.')
+    //     return () => console.log('actionitems component unmounting.')
+    // },[])
+
     React.useEffect(() => {
         if(props.recentScore){
             const recentDate = props.recentScore.createdAt
@@ -53,7 +58,7 @@ export default function ActionItems(props){
 
 
     return(
-        <div className="container px-4 py-5">
+        <div className="container px-4 mb-4">
         <h2>Action Items:</h2>
         <div className="accordion" id="accordionItems">
             <div className="accordion-item">
