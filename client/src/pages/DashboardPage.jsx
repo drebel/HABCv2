@@ -103,7 +103,7 @@ export default function DashboardPage(props){
     }
 
     //Add a inital datapoint of 0 so you can see a line if theres only one user score saved
-    // if(xValues.length == 1){
+    if(xValues.length == 1){
         const date = new Date (scoresArray[0].createdAt)
         date.setDate(date.getDate() - 1)
         const formattedDate = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear() % 100}`
@@ -115,7 +115,7 @@ export default function DashboardPage(props){
         functionalScoreY.unshift(0)
         behaviorScoreY.unshift(0)
         caregiverScoreY.unshift(0)
-    // }
+    }
 
     function test(e){
         e.preventDefault(e)

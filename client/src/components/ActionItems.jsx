@@ -69,7 +69,7 @@ export default function ActionItems(props){
                 </h2>
                 <div id="collapseOne" className="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionItem1">
                     <div className="accordion-body">
-                        <div className="row">
+                        <div className="row p-3 border-2 border border-dark rounded mb-4">
                             <h3>Total Score</h3>
                             <h5>Ideal: Total score less than 14 or 50% reduction over 12 months</h5>
                             {
@@ -97,7 +97,7 @@ export default function ActionItems(props){
                                 </tr>
                             </table> */}
                         </div>
-                        <div className="row">
+                        <div className="row p-3 bg-danger-subtle border-2 border border-danger rounded mb-4">
                             <h3>Cognitive</h3>
                             <h5>Cutoff: Scores of 5 or greater may indicte the need for more assessment for mild cognitive impairment</h5>
                             {
@@ -125,7 +125,7 @@ export default function ActionItems(props){
                                 </tr>
                             </table> */}
                         </div>
-                        <div className="row">
+                        <div className="row p-3 bg-warning-subtle border-2 border border-warning rounded mb-4">
                             <h3>Functional</h3>
                             <p>The functional score is not used a screening tool like the cognitive score but it is still helpful at monitoring your loved one's functional changes over time and their response to different treatments.</p>
                             {/* <table className="col-12 col-md-4 px-2">
@@ -147,7 +147,7 @@ export default function ActionItems(props){
                                 </tr>
                             </table> */}
                         </div>
-                        <div className="row">
+                        <div className="row p-3 bg-success-subtle border-2 border border-success rounded mb-4">
                             <h3>Behavior and Mood</h3>
                             <h5>Ideal: Subscore less than 2 or 50% reduction over 12 months</h5>
                             {
@@ -175,7 +175,7 @@ export default function ActionItems(props){
                                 </tr>
                             </table> */}
                         </div>
-                        <div className="row">
+                        <div className="row p-3 bg-info-subtle border-2 border border-info rounded mb-4">
                             <h3>Caregiver Stress</h3>
                             <h5>Ideal: Subscore less than 1 or 50% reduction over 12 months</h5>
                             {

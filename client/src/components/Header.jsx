@@ -91,7 +91,7 @@ export default function Header(props){
             </> :
             <>
               <button type="button" className="btn btn-outline-primary me-2" onClick={props.toggleShowLogin}>Login</button>
-              <button type="button" className="btn btn-primary" onClick={props.toggleShowSignup}>Sign-up</button>
+              {/* <button type="button" className="btn btn-primary" onClick={props.toggleShowSignup}>Sign-up</button> */}
             </>
           }
 
