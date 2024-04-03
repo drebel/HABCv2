@@ -24,14 +24,14 @@ module.exports= {
     },
     updateScore: async (req, res, next) => {
         const docId = req.params.docId
-        console.log(req.params)
-        console.log(req.body)
+        // console.log(req.params)
+        // console.log(req.body)
         const putScore = req.body
-        console.log(putScore)
+        // console.log(putScore)
         
         try{
             const updatedScore = await Score.findByIdAndUpdate(docId, putScore, {new: true})
-            console.log(updatedScore)
+            // console.log(updatedScore)
             if (!updatedScore) {
                 return res.status(404).send({ message: 'Score not found' });
             }

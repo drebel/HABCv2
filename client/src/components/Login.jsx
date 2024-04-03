@@ -36,17 +36,20 @@ export default function Login(props){
 
             // after they are logged in look to see if they have a score stored locally
             if(localStorage.getItem('guestScore')){
+                const storedStr = localStorage.getItem('guestScore')
+                const currentScore = JSON.parse(storedStr)
+                console.log(currentScore)
 
                 // if they do check to see if they have any saved score
                 const response = await axios.get(`http://localhost:5000/score?uid=${user.uid}`)
 
                 // if they have at least one saved score, get the most recent one
                 if(response.data.length > 0){
-                    const recentScore = response.data[response.data.length - 1]
-                    console.log(recentScore)
+                    const fetchedScore = response.data[response.data.length - 1]
+                    console.log(fetchedScore)
   
                     // compared the date on the recent score to todays date
-                    const recentDate = new Date (recentScore.createdAt)
+                    const recentDate = new Date (fetchedScore.createdAt)
                     const formattedRecentDate = `${recentDate.getMonth() + 1}/${recentDate.getDate()}/${recentDate.getFullYear() % 100}`
                     
                     const today = new Date()
@@ -58,9 +61,13 @@ export default function Login(props){
                         const confirmed = window.confirm(`You have already submitted a response today (${formattedToday}). Do you want to replace the previous response with this one?`);
                         if (confirmed) {
                             // if they do update the score
-                            console.log(recentScore._id)
-                            updateScore(recentScore._id, user, formData, calculatedMetrics)
-                        } // if they dont navigate to dashboard
+                            // console.log(fetchedScore._id)
+                            updateScore(fetchedScore._id, user, currentScore.rawScores, currentScore.calculatedMetrics)
+                        } else {
+                            // remove the local stored score if they dont want to keep it
+                            localStorage.removeItem('guestScore')
+
+                        }
                     }else{
                         // if the most recent score isnt from today add it
                         props.addGuestScore(user)

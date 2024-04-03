@@ -42,7 +42,7 @@ export default function HabcContainer(props){
     React.useEffect(() => {
         if(!showQuestionnaire){
             if(resultsRef.current){
-                console.log('about to scroll')
+                // console.log('about to scroll')
                 resultsRef.current.parentElement.scrollIntoView({ behavior: 'smooth' });
             }
         }else{
@@ -137,7 +137,7 @@ export default function HabcContainer(props){
                     if (formattedRecentDate === formattedToday) {
                         const confirmed = window.confirm(`You have already submitted a response today (${formattedToday}). Do you want to replace the previous response with this one?`);
                         if (confirmed) {
-                            console.log(recentScore._id)
+                            // console.log(recentScore._id)
                             updateScore(recentScore._id, user, formData, calculatedMetrics)
                         }
                     }
