@@ -21,7 +21,7 @@ export default function Questionnaire(props){
     const cognitiveElements = questions.filter( q => q.subscale === 'Cognitive').map(q => (
         <Question 
             questionKey={q.id}
-            name={`q${q.id}`}
+            name={`q${q.id+1}`}
             question={q.question}
             formData={props.formData}
             handleChange={props.handleChange}
@@ -31,7 +31,7 @@ export default function Questionnaire(props){
     const functionalElements = questions.filter( q => q.subscale === 'Functional').map(q => (
         <Question 
             questionKey={q.id}
-            name={`q${q.id}`}
+            name={`q${q.id+1}`}
             question={q.question}
             formData={props.formData}
             handleChange={props.handleChange}
@@ -41,7 +41,7 @@ export default function Questionnaire(props){
     const behaviorElements = questions.filter( q => q.subscale === 'Behavioral/Mood').map(q => (
         <Question 
             questionKey={q.id}
-            name={`q${q.id}`}
+            name={`q${q.id+1}`}
             question={q.question}
             formData={props.formData}
             handleChange={props.handleChange}
@@ -51,7 +51,7 @@ export default function Questionnaire(props){
     const caregiverElements = questions.filter( q => q.subscale === 'Caregiver Stress').map(q => (
         <Question 
             questionKey={q.id}
-            name={`q${q.id}`}
+            name={`q${q.id+1}`}
             question={q.question}
             formData={props.formData}
             handleChange={props.handleChange}

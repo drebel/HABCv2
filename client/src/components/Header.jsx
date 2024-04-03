@@ -11,7 +11,7 @@ export default function Header(props){
   async function addGuestScore(user){
     const guestScoreStr = localStorage.getItem('guestScore')
     const guestScore = JSON.parse(guestScoreStr)
-    console.log(guestScore)
+    // console.log(guestScore)
 
     try{
       const newDocValues = {

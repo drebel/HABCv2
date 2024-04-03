@@ -13,10 +13,9 @@ import eduModules from '../assets/eduModules'
 
 export default function Results(props){
 
-    // React.useEffect( () => {
-    //     console.log('results component mounting.')
-    //     return () => console.log('results component unmounting.')
-    // },[])
+    React.useEffect( () => {
+        console.log(props.formData)
+    },[])
 
     // async function getResults(){
     //     const auth = getAuth()
@@ -48,11 +47,12 @@ export default function Results(props){
     const entriesArray = Object.entries(rawScores)
         .filter(([key,value]) => value > 0)
         .sort((a,b) => b[1] - a[1])
-    // console.log(entriesArray)
+    console.log(entriesArray)
     const keys = entriesArray.map(element => element[0])
-    // console.log(keys)
+    console.log(keys)
     const unfilteredModuleIds = []
     for(const q of keys){
+        console.log(`value of q: ${q}`)
         if(questionToModules[q].length !== 0){
             unfilteredModuleIds.push(questionToModules[q])
         }
