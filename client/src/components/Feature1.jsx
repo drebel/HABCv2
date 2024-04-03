@@ -8,7 +8,7 @@ export default function Feature1() {
         <>
             <div className="container px-4 my-4">
                 <div className="row featurette py-5">
-                    <div className="col-md-6 order-md-2 mb-3">
+                    <div className="col-md-7 order-md-2 mb-3">
                         <h2 className="fw-bold text-body-emphasis">How to use HABC</h2>
                         <ul className="lh-lg fs-5">
                             <li>Every 2-12 weeks (depending on your previous score) fill out the HABC self-assessment questionnaire</li>
@@ -23,7 +23,7 @@ export default function Feature1() {
                             <Link to="habc" className="btn btn-primary btn-lg px-4 me-sm-3">Try HABC for Free</Link>
                         </div>
                     </div>
-                    <div className="container col-md-6 mb-3">
+                    <div className="container col-md-5 mb-3">
                         <img src={actionItems} className="img-fluid border rounded-3 shadow-lg mb-4" alt="Image of HABC scores and action items"  />
                     </div>
                 </div>

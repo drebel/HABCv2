@@ -172,9 +172,17 @@ export default function HabcContainer(props){
             ) : (
                 <>
                     <div ref={resultsRef}>
-                        <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
+                        <Results 
+                        formData={formData} 
+                        calculatedMetrics={calculatedMetrics}
+                        user={user}
+                        toggleQuestionnaire={toggleQuestionnaire}
+                        toggleShowLogin={props.toggleShowLogin}
+                        toggleShowSignup={props.toggleShowSignup}
+
+                        />
                     </div>
-                    <div className='text-center'>
+                    {/* <div className='text-center'>
                         <br />
                         <button className='btn btn-outline-primary' onClick={toggleQuestionnaire}>Return to Quetionnaire</button>
                         <div className='m-4'>
@@ -183,7 +191,7 @@ export default function HabcContainer(props){
                             <button type="button" className="btn btn-outline-primary me-2" onClick={props.toggleShowLogin}>Login</button>
                             <button type="button" className="btn btn-primary" onClick={props.toggleShowSignup}>Sign-up</button>
                         </div>
-                    </div>
+                    </div> */}
                 </>
             )}
             
