@@ -1,5 +1,4 @@
 
-
 export default function Feature2() {
 
     return (
@@ -9,7 +8,7 @@ export default function Feature2() {
                         <h2 className="fw-bold text-body-emphasis">Caregiver Bill of Rights</h2>
                     <div className="col-md-12">
                         <p className="lead">
-                            Caregiving can be an all-encompassing endevor. Please remember to have boundaries, take care of yourself, and get what you want out of life during your time caregiving for your loved one. May these statements by Jo Home, author of Caregiving: Helping an Aging Loved One, empower you. 
+                            Caregiving can be an all-encompassing endevor. Please remember to have boundaries, take care of yourself, and get what you want out of life during your time caregiving for your loved one. May these statements help you build the support system you and your loved one deserve and inspire you on your journey. 
                         </p>
                         <h4>I have the right...</h4>
                         <ul>
@@ -24,6 +23,7 @@ export default function Feature2() {
                             <li>To expect and demand that as new strides are made in finding resources to aid physically and mentally impaired older persons in our country, similar strides will be made toward aiding and supporting caregivers.</li>
                             <li>To ____________________________________ (Add your own statement of rights to this list. Read the list to yourself every day.)</li>
                         </ul>
+                        <p>-Jo Home, author of Caregiving: Helping and Aging Loved one</p>
                     </div>
                 </div>
             </div>
