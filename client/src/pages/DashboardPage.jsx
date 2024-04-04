@@ -64,6 +64,7 @@ export default function DashboardPage(props){
         // console.log(keys)
         const unfilteredModuleIds = []
         for(const q of keys){
+            // console.log(`value of q: ${q}`)
             if(questionToModules[q].length !== 0){
                 unfilteredModuleIds.push(questionToModules[q])
             }

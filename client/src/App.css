@@ -77,9 +77,9 @@ label {
   z-index: 1000;
 }
 
-ol li {
+/* ol li {
   font-size: 1.2rem;
-}
+} */
 
 /* ol > li {
   font-weight: 600;
@@ -95,4 +95,8 @@ ol li {
 button.accordion-button:focus {
   box-shadow: none;
   outline: none;
+}
+
+.half-width{
+  max-width: 50%;
 }

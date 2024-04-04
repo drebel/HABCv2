@@ -14,8 +14,7 @@ import eduModules from '../assets/eduModules'
 export default function Results(props){
 
     // React.useEffect( () => {
-    //     console.log('results component mounting.')
-    //     return () => console.log('results component unmounting.')
+    //     console.log(props.formData)
     // },[])
 
     // async function getResults(){
@@ -53,6 +52,7 @@ export default function Results(props){
     // console.log(keys)
     const unfilteredModuleIds = []
     for(const q of keys){
+        // console.log(`value of q: ${q}`)
         if(questionToModules[q].length !== 0){
             unfilteredModuleIds.push(questionToModules[q])
         }
@@ -115,6 +115,16 @@ export default function Results(props){
                 />            
             {/* <section style={{ height: '85vh'}}>testing</section> */}
             <RecentScore calculatedMetrics={props.calculatedMetrics}/>
+            { !props.user &&
+                            <div className='text-center '>
+                                <button className='btn btn-outline-primary' onClick={props.toggleQuestionnaire}>Return to Quetionnaire</button>
+                                <div className='m-4'>
+                                    <h4>Your score isn't saved!</h4>
+                                    <h5 className='mb-3'>Log in or sign up to save your score</h5>
+                                    <button type="button" className="btn btn-outline-primary me-2" onClick={props.toggleShowLogin}>Login</button>
+                                    <button type="button" className="btn btn-primary" onClick={props.toggleShowSignup}>Sign-up</button>
+                                </div>
+                            </div>}
             <ActionItems 
                 recentScore={newScore}
                 tips={modules}

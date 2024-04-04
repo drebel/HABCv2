@@ -42,7 +42,7 @@ export default function HabcContainer(props){
     React.useEffect(() => {
         if(!showQuestionnaire){
             if(resultsRef.current){
-                console.log('about to scroll')
+                // console.log('about to scroll')
                 resultsRef.current.parentElement.scrollIntoView({ behavior: 'smooth' });
             }
         }else{
@@ -137,7 +137,7 @@ export default function HabcContainer(props){
                     if (formattedRecentDate === formattedToday) {
                         const confirmed = window.confirm(`You have already submitted a response today (${formattedToday}). Do you want to replace the previous response with this one?`);
                         if (confirmed) {
-                            console.log(recentScore._id)
+                            // console.log(recentScore._id)
                             updateScore(recentScore._id, user, formData, calculatedMetrics)
                         }
                     }
@@ -172,9 +172,17 @@ export default function HabcContainer(props){
             ) : (
                 <>
                     <div ref={resultsRef}>
-                        <Results formData={formData} calculatedMetrics={calculatedMetrics}/>
+                        <Results 
+                        formData={formData} 
+                        calculatedMetrics={calculatedMetrics}
+                        user={user}
+                        toggleQuestionnaire={toggleQuestionnaire}
+                        toggleShowLogin={props.toggleShowLogin}
+                        toggleShowSignup={props.toggleShowSignup}
+
+                        />
                     </div>
-                    <div className='text-center'>
+                    {/* <div className='text-center'>
                         <br />
                         <button className='btn btn-outline-primary' onClick={toggleQuestionnaire}>Return to Quetionnaire</button>
                         <div className='m-4'>
@@ -183,7 +191,7 @@ export default function HabcContainer(props){
                             <button type="button" className="btn btn-outline-primary me-2" onClick={props.toggleShowLogin}>Login</button>
                             <button type="button" className="btn btn-primary" onClick={props.toggleShowSignup}>Sign-up</button>
                         </div>
-                    </div>
+                    </div> */}
                 </>
             )}
             

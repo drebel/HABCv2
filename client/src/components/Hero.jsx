@@ -12,10 +12,8 @@ export default function Hero(){
                     <Link to="habc" className="btn btn-primary btn-lg px-4 me-sm-3">Get Started</Link>
                 </div>
             </div>
-            <div >
-                <div className="container">
-                    <img src={habctest} className="img-fluid border rounded-3 shadow-lg mb-4" alt="Line/scatter plot of HABC results"  />
-                </div>
+            <div className="container">
+                <img src={habctest} className="img-fluid border rounded-3 shadow-lg mb-4" alt="Line/scatter plot of HABC results"  />
             </div>
         </div>
     )
