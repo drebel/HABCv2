@@ -3,36 +3,34 @@
     "version": "1.0.0",
     "description": "Combined backend and frontend application for HABC",
     "scripts": {
-      "start": "cd server && npm start", 
-      "build": "cd client && npm run build", 
-      "dev": "concurrently \"cd server && node server.js\" \"cd client && npm run dev\"",
-      "test": "echo \"Error: no test specified\" && exit 1"
+        "start": "cd server && npm start",
+        "build": "cd client && npm run build",
+        "dev": "concurrently \"cd server && node server.js\" \"cd client && npm run dev\"",
+        "test": "echo \"Error: no test specified\" && exit 1"
     },
     "dependencies": {
-      "axios": "^1.6.7",
-      "bootstrap": "^5.3.3",
-      "cors": "^2.8.5",
-      "dotenv": "^16.4.5",
-      "express": "^4.18.3",
-      "firebase": "^10.8.1",
-      "firebase-admin": "^12.0.0",
-      "plotly.js": "^2.29.1",
-      "mongodb": "4.1",
-      "mongoose": "^8.2.1",
-      "react": "^18.2.0",
-      "react-dom": "^18.2.0",
-      "react-plotly.js": "^2.6.0",
-      "react-router-dom": "^6.22.2"
+        "axios": "^1.6.7",
+        "bootstrap": "^5.3.3",
+        "cors": "^2.8.5",
+        "dotenv": "^16.4.5",
+        "express": "^4.18.3",
+        "firebase": "^10.8.1",
+        "firebase-admin": "^12.0.0",
+        "mongodb": "4.1",
+        "mongoose": "^8.2.1",
+        "react": "^18.2.0",
+        "react-dom": "^18.2.0",
+        "react-plotly.js": "^2.6.0",
+        "react-router-dom": "^6.22.2"
     },
     "devDependencies": {
-      "@types/react": "^18.0.28",
-      "@types/react-dom": "^18.0.11",
-      "@vitejs/plugin-react": "^4.0.0",
-      "eslint": "^8.38.0",
-      "eslint-plugin-react": "^7.32.2",
-      "eslint-plugin-react-hooks": "^4.6.0",
-      "eslint-plugin-react-refresh": "^0.3.4",
-      "vite": "^4.3.2"
+        "@types/react": "^18.0.28",
+        "@types/react-dom": "^18.0.11",
+        "@vitejs/plugin-react": "^4.0.0",
+        "eslint": "^8.38.0",
+        "eslint-plugin-react": "^7.32.2",
+        "eslint-plugin-react-hooks": "^4.6.0",
+        "eslint-plugin-react-refresh": "^0.3.4",
+        "vite": "^4.3.2"
     }
-  }
-  
+}
