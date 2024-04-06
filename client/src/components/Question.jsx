@@ -19,6 +19,7 @@ export default function Question(props){
                                 value={0}
                                 checked={props.formData[props.name] === 0}
                                 onChange={props.handleChange}
+                                required
                             />
                             <label className='btn btn-outline-dark flex-grow-1 mx-1 my-2' htmlFor={`${props.name}_none`}>
                                 Not At All
@@ -33,6 +34,7 @@ export default function Question(props){
                                 value={1}
                                 checked={props.formData[props.name] === 1}
                                 onChange={props.handleChange}
+                                required
                             />
                             <label className='btn btn-outline-dark flex-grow-1 mx-1' htmlFor={`${props.name}_several`}>
                                 Several Days
@@ -47,6 +49,7 @@ export default function Question(props){
                                 value={2}
                                 checked={props.formData[props.name] === 2}
                                 onChange={props.handleChange}
+                                required
                             />
                             <label className='btn btn-outline-dark flex-grow-1 mx-1' htmlFor={`${props.name}_over`}>
                                 Over half the days
@@ -61,6 +64,7 @@ export default function Question(props){
                                 value={3}
                                 checked={props.formData[props.name] === 3}
                                 onChange={props.handleChange}
+                                required
                             />
                             <label className='btn btn-outline-dark flex-grow-1 mx-1' htmlFor={`${props.name}_daily`}>
                                 Almost Daily

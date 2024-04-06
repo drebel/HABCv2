@@ -70,16 +70,16 @@ export default function Header(props){
             className="nav-link px-2"
             style={({isActive}) => isActive ? activeStyles : null}
             >
-              Dashboard
+              Results
             </NavLink></li>
           }
-          <li><NavLink 
+          {/* <li><NavLink 
           to="testing" 
           className="nav-link px-2"
           style={({isActive}) => isActive ? activeStyles : null}
           >
             Testing
-          </NavLink></li>
+          </NavLink></li> */}
         </ul>
 
         <div className="col-md-3 text-end">
@@ -90,8 +90,8 @@ export default function Header(props){
             <Logout />
             </> :
             <>
-              <button type="button" className="btn btn-outline-primary me-2" onClick={props.toggleShowLogin}>Login</button>
-              {/* <button type="button" className="btn btn-primary" onClick={props.toggleShowSignup}>Sign-up</button> */}
+              <button type="button" className="btn btn-outline-secondary me-2" onClick={props.toggleShowLogin}>Login</button>
+              <button type="button" className="btn btn-outline-primary" onClick={props.toggleShowSignup}>Sign-up</button>
             </>
           }
 

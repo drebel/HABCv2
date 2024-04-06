@@ -9,7 +9,7 @@ export default function FeatureWithIcons(){
 
                 <div className="row row-cols-1 row-cols-md-2 align-items-md-center g-5 py-5">
                     <div className="col d-flex flex-column align-items-start gap-2">
-                        <h2 className="fw-bold text-body-emphasis">What is Healthy Aging Braing Care Monitor?</h2>
+                        <h2 className="fw-bold text-body-emphasis">What is the Healthy Aging Braing Care Monitor?</h2>
                         <p>The Healthy Aging Brain Care Monitor (HABC) was developed by a team of 22 dementia experts to give caregivers a tool to measure different dementia symptoms at home and assess how much its affecting their loved one's life.</p>
                         <p className="text-body-emphasis">By tracking these scores over time, it is easier for you and your loved one's physician to understand how effective a treatement is at reducing symptoms and how to modify the treatment plan going forward.</p>
                         <p>HABC scores are respsonsive to the severity of symptoms as well as interventions. HABC was the most sensitive at measuring behavior symptoms and the response to treatment.</p>

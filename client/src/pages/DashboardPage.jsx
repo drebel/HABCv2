@@ -1,5 +1,6 @@
 import React from 'react'
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 import LongChart from '../components/LongChart'
 import RecentScore from '../components/RecentScore'
@@ -171,10 +172,19 @@ export default function DashboardPage(props){
                     caregiverScoreCutoff={caregiverScoreCutoff}
                     />
                 <RecentScore calculatedMetrics={recentScore.calculatedMetrics}/>
+                {Object.keys(recentScore.rawScores).length == 0 
+                ?
+                <div className="container px-4 mb-4 d-flex flex-column align-items-center justify-content-center flex-wrap mb-5">
+                    <h2 className='text-center'>Please fill out the HABC first in order to see your results!</h2>
+                    
+                    <Link to="../habc" className="btn btn-primary btn-lg px-4 me-sm-3">Get Started</Link>
+                </div>
+                :
                 <ActionItems
                     recentScore={recentScore}
                     tips={tips}
                     />
+                }   
 
             </section>
         </>
