@@ -11,6 +11,8 @@ import Signup from '../components/Signup'
 import updateScore from '../../utils/updateScore'
 
 export default function HabcContainer(props){
+    const prodURL = import.meta.env.VITE_REACT_APP_URL
+
 
     const auth = getAuth()
     const user = auth.currentUser
@@ -112,7 +114,7 @@ export default function HabcContainer(props){
                 calculatedMetrics: calculatedMetrics,
             }
 
-            const response = await axios.post('http://localhost:5000/score', newDocValues)
+            const response = await axios.post(`${prodURL}/score`, newDocValues)
             return response.data
         }catch(error){
             console.error(error)
@@ -123,7 +125,7 @@ export default function HabcContainer(props){
         e.preventDefault()
         if(user){
             try{
-                const response = await axios.get(`http://localhost:5000/score?uid=${user.uid}`)
+                const response = await axios.get(`${prodURL}/score?uid=${user.uid}`)
                 
                 if(response.data.length > 0){
                     const recentScore = response.data[response.data.length - 1]

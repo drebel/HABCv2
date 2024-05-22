@@ -9,13 +9,15 @@ import { getAuth } from 'firebase/auth'
 // import FeatureWithIcons from '../components/FeatureWithIcons'
 
 export default function Testing(){
+    const prodURL = import.meta.env.VITE_REACT_APP_URL
+
 
     async function getScores(){
         const auth = getAuth()
         const user = auth.currentUser
         console.log(user.uid)
 
-        const res = await axios.get(`http://localhost:5000/score?uid=${user.uid}`)
+        const res = await axios.get(`${prodURL}/score?uid=${user.uid}`)
         const scoresArray = res.data
         console.log(scoresArray)
     }

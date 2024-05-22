@@ -9,5 +9,6 @@ export default defineConfig({
   },
   define: {
     'process.env': {},
+    __APP_ENV__: process.env.VITE_VERCEL_ENV,
   }
 })

@@ -7,6 +7,7 @@ import Signup from './Signup'
 import Logout from './Logout'
 
 export default function Header(props){
+  const prodURL = import.meta.env.VITE_REACT_APP_URL
 
   async function addGuestScore(user){
     const guestScoreStr = localStorage.getItem('guestScore')
@@ -20,7 +21,7 @@ export default function Header(props){
         calculatedMetrics: guestScore.calculatedMetrics,
       }
       // console.log('created new doc')
-      await axios.post('http://localhost:5000/score', newDocValues)
+      await axios.post(`${prodURL}/score`, newDocValues)
       // console.log('posted scores')
       localStorage.removeItem('guestScore')
       // console.log('removed data from local storage')

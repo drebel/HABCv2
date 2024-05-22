@@ -7,6 +7,8 @@ import updateScore from '../../utils/updateScore';
 
 
 export default function Login(props){
+    const prodURL = import.meta.env.VITE_REACT_APP_URL
+
 
     const navigate = useNavigate()
     
@@ -41,7 +43,7 @@ export default function Login(props){
                 console.log(currentScore)
 
                 // if they do check to see if they have any saved score
-                const response = await axios.get(`http://localhost:5000/score?uid=${user.uid}`)
+                const response = await axios.get(`${prodURL}/score?uid=${user.uid}`)
 
                 // if they have at least one saved score, get the most recent one
                 if(response.data.length > 0){

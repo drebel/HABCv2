@@ -10,6 +10,8 @@ import eduModules from '../assets/eduModules'
 import questionToModules from '../assets/questionToModules'
 
 export default function DashboardPage(props){
+    const prodURL = import.meta.env.VITE_REACT_APP_URL
+
 
     const [scoresArray, setScoresArray] = React.useState([])
     const [recentScore, setRecentScore] = React.useState({
@@ -29,7 +31,7 @@ export default function DashboardPage(props){
         
         async function getScores(){
             try{
-                const res = await axios.get(`http://localhost:5000/score?uid=${props.userAuth.uid}`)
+                const res = await axios.get(`${prodURL}/score?uid=${props.userAuth.uid}`)
                 const fetchedScoresArray = res.data
                 setScoresArray(fetchedScoresArray)
             }catch(error){
