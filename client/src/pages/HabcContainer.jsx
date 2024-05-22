@@ -114,7 +114,7 @@ export default function HabcContainer(props){
                 calculatedMetrics: calculatedMetrics,
             }
 
-            const response = await axios.post(`${prodURL}/score`, newDocValues)
+            const response = await axios.post(`/score`, newDocValues)
             return response.data
         }catch(error){
             console.error(error)
@@ -125,7 +125,7 @@ export default function HabcContainer(props){
         e.preventDefault()
         if(user){
             try{
-                const response = await axios.get(`${prodURL}/score?uid=${user.uid}`)
+                const response = await axios.get(`/score?uid=${user.uid}`)
                 
                 if(response.data.length > 0){
                     const recentScore = response.data[response.data.length - 1]

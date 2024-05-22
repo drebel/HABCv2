@@ -11,7 +11,7 @@ async function updateScore(docId, user, rawScores, calculatedMetrics) {
         }
         console.log(updatedDocValues)
 
-        const response = await axios.put(`${prodURL}/score/${docId}`, updatedDocValues)
+        const response = await axios.put(`/score/${docId}`, updatedDocValues)
         // console.log(response)
         localStorage.removeItem('guestScore')
         return response.data

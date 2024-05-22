@@ -19,7 +19,7 @@ app.use('/auth', authRoutes)
 app.use('/score', scoreRoutes)
 
 connectDB().then(() => {
-    app.listen(process.env.PORT, () => {
+    app.listen(process.env.PORT || PORT, () => {
         console.log("listening for requests")
     })
   }) 

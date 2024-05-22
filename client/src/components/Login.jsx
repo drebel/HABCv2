@@ -43,7 +43,7 @@ export default function Login(props){
                 console.log(currentScore)
 
                 // if they do check to see if they have any saved score
-                const response = await axios.get(`${prodURL}/score?uid=${user.uid}`)
+                const response = await axios.get(`/score?uid=${user.uid}`)
 
                 // if they have at least one saved score, get the most recent one
                 if(response.data.length > 0){

@@ -17,7 +17,7 @@ export default function Testing(){
         const user = auth.currentUser
         console.log(user.uid)
 
-        const res = await axios.get(`${prodURL}/score?uid=${user.uid}`)
+        const res = await axios.get(`/score?uid=${user.uid}`)
         const scoresArray = res.data
         console.log(scoresArray)
     }

@@ -21,7 +21,7 @@ export default function Header(props){
         calculatedMetrics: guestScore.calculatedMetrics,
       }
       // console.log('created new doc')
-      await axios.post(`${prodURL}/score`, newDocValues)
+      await axios.post(`/score`, newDocValues)
       // console.log('posted scores')
       localStorage.removeItem('guestScore')
       // console.log('removed data from local storage')

@@ -31,7 +31,7 @@ export default function DashboardPage(props){
         
         async function getScores(){
             try{
-                const res = await axios.get(`${prodURL}/score?uid=${props.userAuth.uid}`)
+                const res = await axios.get(`/score?uid=${props.userAuth.uid}`)
                 const fetchedScoresArray = res.data
                 setScoresArray(fetchedScoresArray)
             }catch(error){
